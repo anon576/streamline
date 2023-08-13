@@ -1,0 +1,122 @@
+{% extends 'layout.html' %}
+{% block body %}
+  
+
+  <div class="homepage">
+
+    <div class="home-header"></div>
+    <div class="header-content">
+
+      <h1 class='headline'>Unlocking Potential, Empowering Success: CodeStream IT Solutions and Training</h1>
+      <!-- {/* <p class='slogan'>Seamless Solutions for IT, Web, and Training</p> */}
+          {loginUser && loginUser.name && <h5><span class='first-word'>Welcome</span>, {loginUser.name}</h5>} -->
+      <div class="header-btn">
+        <a href="#itservices"><button>Join Internship</button></a>
+      </div>
+    </div>
+
+    <section class="service-sec">
+      <h2>SERVICES</h2>
+      <div class="services-images">
+        <div class="itservices">
+          <div class="card">
+            <img src="../static/images/webdesign.png" alt="Avatar" />
+            <div class="container">
+              <h5>Web Designing</h5>
+              <button>Know more</button>
+            </div>
+          </div>
+          <div class="card">
+            <img src="../static/images/nft.png" alt="Avatar" />
+            <div class="container">
+              <h5>NFT's</h5>
+              <button>Know more</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- {/* <section class='clients'>
+          <h2>Some of our clients</h2>
+          <div class="clients-container">
+            <div class="clients-content">
+              <img src={require("../static/images/cpp.png")} alt="" />
+              <div class="client-heading">
+                <h3>EarthVerse</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id ducimus sed quo, odio asperiores repellat quae exercitationem minus error possimus.</p>
+                <div class="footer-links">
+                  <a href="#"><FontAwesomeIcon icon={faLinkedin} class='social-icons' /></a>
+                  <a href="#"><FontAwesomeIcon icon={faGithub} class='social-icons' /></a>
+                  <a href="#"><FontAwesomeIcon icon={faInstagram} class='social-icons' /></a>
+                  <a href="#"><FontAwesomeIcon icon={faTwitter} class='social-icons' /></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section> */} -->
+
+  </div>
+
+  <div class='homepage'>
+    <section class="tranining">
+      <h3>Training With Certification</h3>
+      <div class="service-content2">
+        <div class="itservices" id='itservices'>
+          <div class="card">
+            <img src="../static/images/python.png" alt="Avatar" />
+            <div class="container">
+              <h5>Python</h5>
+              <a href="/details"><button>Apply</button></a>
+              
+            </div>
+          </div>
+          <div class="card">
+            <img src="../static/images/cprogramming.png" alt="Avatar" />
+            <div class="container">
+              <h5>C Programming</h5>
+              <a href="/details"><button>Apply</button></a>
+            </div>
+          </div>
+          <div class="card">
+            <img src="../static/images/cpp.png" alt="Avatar" />
+            <div class="container">
+              <h5>C++</h5>
+              <a href="/details"><button>Apply</button></a>
+            </div>
+          </div>
+          <div class="card">
+            <img src="../static/images/java.png" alt="Avatar" />
+            <div class="container">
+              <h5>Java</h5>
+              <a href="/details"><button>Apply</button></a>
+            </div>
+          </div>
+          <div class="card">
+            <img src="../static/images/webdev.png" alt="Avatar" />
+            <div class="container">
+              <h5>Web Development</h5>
+              <a href="/details"><button>Apply</button></a>
+            </div>
+          </div>
+          <div class="card">
+            <img src="../static/images/blockchain.png" alt="Avatar" />
+            <div class="container">
+              <h5>BlockChain</h5>
+              <a href="/details"><button>Apply</button></a>
+            </div>
+          </div>
+          <div class="card">
+            <img src="../static/images/ai.png" alt="Avatar" />
+            <div class="container">
+              <h5>AI and Chatgpt</h5>
+              <a href="/details"><button>Apply</button></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  {% endblock body  %}

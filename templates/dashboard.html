@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dashboard</title>
+</head>
+
+<body>
+   
+    <section>
+        <header>
+            <h1>Welcome to Your Dashboard, {{ session['name'] }}!</h1>
+        </header>
+        <h2>Your Enrolled Internships</h2>
+        {% if enrolled_internships  %}
+        <div class="internship-cards">
+            {% for internship in enrolled_internships %}
+            <div class="card">
+                <h3>{{ internship.internship }}</h3>
+                <p>Internship ID: {{ internship.sno }}</p>
+                <p>Start Date: {{ internship.date }}</p>
+                
+                
+                <p>Progress: {% if user_id %}{{ user_progress[internship.internship] }}{% endif %}</p>
+                <a href="/internship/{{internship.internship}}/1">
+                    <button>Continue</button>
+                </a>
+                <!-- Add other details you want to display -->
+            </div>
+            {% endfor %}
+        </div>
+     
+       
+        {% else %}
+        <p>No internships enrolled yet.</p>
+        {% endif %}
+    </section>
+    
+
+    <!-- Rest of the content -->
+
+    <footer>
+        <p>Contact us at <a href="mailto:internship@example.com">internship@example.com</a> for any inquiries.</p>
+    </footer>
+</body>
+
+</html>
+
+{% endblock body %}

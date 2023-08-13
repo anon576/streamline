@@ -1,0 +1,68 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+<body>
+    <h1>Welcome to our Python Internship!</h1>
+   <section>
+        
+        <h2>About the Internship</h2>
+        <p>Are you passionate about programming and interested in learning Python? Look no further! Our Python Internship
+            is designed to provide you with hands-on experience and essential skills to kickstart your journey as a Python
+            developer.</p>
+    </section>
+
+    <section>
+        <h2>Internship Details</h2>
+        <ul>
+            <li><strong>Duration:</strong> 8 weeks</li>
+            <li><strong>Location:</strong> Online</li>
+            <li><strong>Internship Fee:</strong> Rs. 180 only!</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>What You'll Learn</h2>
+        <ul>
+            <li>Python fundamentals and syntax</li>
+            <li>Working with data structures and algorithms in Python</li>
+            <li>Developing web applications using Flask or Django</li>
+            <li>Creating and interacting with databases</li>
+            <li>Implementing APIs and integrating third-party services</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Benefits of Joining</h2>
+        <ul>
+            <li>Hands-on projects to build your portfolio</li>
+            <li>Guidance from experienced Python developers</li>
+            <li>Access to a vibrant community of fellow learners</li>
+            <li>Certificate of completion upon finishing the internship</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>How to Apply</h2>
+        <p>To apply for the Python Internship, simply click the button below and fill out the application form.</p>
+        <a href="/applyform">
+            <button>Apply Now</button>
+        </a>
+    </section>
+
+    <footer>
+        <p>Contact us at <a href="mailto:internship@example.com">internship@example.com</a> for any inquiries.</p>
+    </footer>
+    <a href="/">Back to Home</a>
+
+    <script>
+        // Detect if the user navigates back using the browser's back button
+        window.addEventListener("popstate", function(event) {
+            // Redirect the user to the home page
+            window.location.href = "/";
+        });
+    </script>
+</body>
+
+
+
+{% endblock body %}

@@ -1,0 +1,27 @@
+<!-- admin_dashboard.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <h2>Admin Dashboard</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Date</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.date }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/createData">create data</a><hr>
+   >
+    <a href="/adminlogout">Logout</a>
+</body>
+</html>

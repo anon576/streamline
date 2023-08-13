@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+  <link rel="stylesheet" href="../static/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" href=
+"../static/images/logo.png" 
+          type="image/x-icon">
+  <title>CodeStream</title>
+</head>
+
+<body>
+  <div class="header">
+    <div class='nav-bar'>
+      <div class="logo">
+        <a href='/'><img src="../static/images/logo.png" alt="" class='logoimage' /></a>
+        <a href='/'>
+          <h1>CodeStream</h1>
+        </a>
+      </div>
+      <div class="menu-bar">
+        <img src="../static/images/menu.png" class='menubtn' id='menubtn' alt="" onClick={menuDrop} />
+        <img src="../static/images/cross.png" class='crossbtn' id='crossbtn' alt="" />
+      </div>
+      <div class="nav-container" id='navContainer'>
+        <a href="/" class='nav-links'>Home</a>
+        <a href="/service" class='nav-links'>Services</a>
+        <a href="/about" class='nav-links'>About</a>
+        <a href="/dashboard" class='nav-links'>Dashboard</a>
+        <!-- <div class="dropdown">
+                {/* <button onClick={myFunction} class="dropbtn">Dropdown</button> */}
+                <img src='../static/images/setting.png' alt="" onClick={myFunction} class="dropbtn" />
+                <div id="myDropdown" class="dropdown-content">
+                  <div class='drop-links'>Profile</div>
+                  <div class='drop-links' onClick={handleLogout}>Logout</div>
+                </div>
+              </div>
+             -->
+
+             {% if 'user_id' in session %}
+             <a href="/logout"><button class='loginbtn'>Logout</button></a>
+         {% else %}
+             <a href="/login"><button class='loginbtn'>Login</button></a>
+         {% endif %}
+
+      </div>
+    </div>
+  </div>
+
+
+{% block body %}
+    
+{% endblock  %}
+
+
+  <div class='footer'>
+    <div class="footer-content">
+      <h4>CodeStream</h4>
+      <div class="footer-links">
+        <i class="fa fa-linkedin fa-lg"></i>
+        <i class="fa fa-facebook fa-lg"></i>
+        <i class="fa fa-github fa-lg"></i>
+        <i class="fa fa-twitter fa-lg"></i>
+      </div>
+      <div class="footer-copyright">
+        <p>copyright &copy;2023 CodeStream IT services and Tranining.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Function to handle menu drop
+    function menuDrop() {
+      let menudrop = document.getElementById("navContainer").classList.toggle("dropmenu");
+      if (!menudrop) {
+        document.getElementById("crossbtn").style.opacity = "0";
+        document.getElementById("menubtn").style.opacity = "1";
+      } else {
+        document.getElementById("menubtn").style.opacity = "0";
+        document.getElementById("crossbtn").style.opacity = "1";
+      }
+    }
+
+    // Add event listener to the menu button to call the menuDrop function on click
+    document.getElementById("menubtn").addEventListener("click", menuDrop);
+  </script>
+</body>
+
+</html>

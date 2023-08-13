@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css">
+    <title>CodeStream</title>
+</head>
+
+<body>
+    <div class='forgetpass'>
+        <h1>Enter Email</h1>
+        <input type="email" name='email' value={email} placeholder='Enter Email' onChange={handleChange} />
+        <div class='button' onClick={handleSubmit}>Submit</div>
+        <div id="alert" class="alert">{alertMessage}</div>
+        <div class="loader" id='loader'><img src="../images/loader.gif" alt="" /></div>
+    </div>
+</body>
+
+</html>

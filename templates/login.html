@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css">
+    <title>CodeStream</title>
+</head>
+
+<body>
+    <form action="/login" method='post'>
+        <div class='login'>
+            <h1>Login</h1>
+            <input type="email" name='email' placeholder='Enter Email' required />
+            <input type="password" name='password' placeholder='Enter password' required />
+            <button type="submit" id="f"><div class='button'>Login</div></button>
+
+            <div>or</div>
+            <div class='button'><a href="/register" id="rej">Register</a></div>
+            <!-- Display error message if it exists -->
+        
+            <a href="/forgot">            <div class="otp">Forget Password</div></a>
+
+            <div class="loader" id='loader'><img src="../images/loader.gif" alt="" /></div>
+        </div>
+    </form>
+    <script>{{r}}</script>
+</body>
+
+</html>
