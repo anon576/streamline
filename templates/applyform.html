@@ -1,8 +1,10 @@
 {% extends 'layout.html' %}
 {% block body %}
+
 <body>
-    <h1>Internship Application Form</h1>
+<section class="">
     <form action="/applyform" method="post">
+        <h1>Application form</h1>
         <label for="name">Name:</label>
         <!-- Check if the user is logged in and their name exists in the session -->
         {% if 'name' in session %}
@@ -11,7 +13,7 @@
         <input type="text" name="name" id="name" required>
         {% endif %}
 
-        <label for="email">Email:</label>
+        <label for="email">Email</label>
         <!-- Check if the user is logged in and their email exists in the session -->
         {% if 'email' in session %}
         <input type="email" name="email" id="email" value="{{ session['email'] }}" required>
@@ -19,17 +21,17 @@
         <input type="email" name="email" id="email" required>
         {% endif %}
 
-        <label for="college">College Name:</label>
+        <label for="college">College Name</label>
         <input type="text" name="college" id="college" required>
 
-        <label for="address">Address:</label>
+        <label for="address">Address</label>
         <input type="text" name="address" id="address" required>
 
-        <label for="mobile">Mobile Number:</label>
+        <label for="mobile">Mobile Number</label>
         <input type="tel" name="mobile" id="mobile" required>
 
-        <label for="birthdate">Birth Date:</label>
-        <input type="date" name="birthdate" id="birthdate" required>
+        <label for="birthdate">Age</label>
+        <input type="number" name="birthdate" id="birthdate" required>
 
         <label for="internship">Select Internship:</label>
         <select name="internship" id="internship" required>
@@ -43,5 +45,6 @@
         </select>
         <button type="submit">Submit</button>
     </form>
+</section>
 </body>
 {% endblock body %}
