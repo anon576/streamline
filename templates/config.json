@@ -1,6 +1,6 @@
 {
     "params": {
-      "userdb": "postgres://streamline_user:tmMHG25zYSioG99qWMMneAtFLyMl23Sm@dpg-cjc5u27db61s73csj78g-a.singapore-postgres.render.com/streamline",
+      "userdb": "postgresql://streamline_user:tmMHG25zYSioG99qWMMneAtFLyMl23Sm@dpg-cjc5u27db61s73csj78g-a.singapore-postgres.render.com/streamline",
       "InternDetails": "sqlite:///InternDetails.db",
       "idata":"sqlite:///idata.db",
       "UserP": "sqlite:///UserProgress.db",
