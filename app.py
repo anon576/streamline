@@ -6,6 +6,7 @@ import random
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import json
+import os
 
 localServer = True
 with open("templates/config.json",'r') as o:
@@ -24,7 +25,7 @@ app.secret_key = "sskey"
 
 
 if(localServer):
-    app.config["SQLALCHEMY_DATABASE_URI"] = params['userdb']
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DURL")
     app.config["SQLALCHEMY_BINDS"] = {
     }
 else:
