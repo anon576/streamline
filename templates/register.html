@@ -9,26 +9,20 @@
 </head>
 
 <body>
-    <form action="/signup" method="post">
-        <div class='register'>
-            <h1>Register</h1>
-            <input type="text" name="name" placeholder="Your Name" onChange={handleChange}></input>
-            <input type="text" name="email" placeholder="Your Email" onChange={handleChange}></input>
-            <input type="password" name="password" placeholder="Your Password" onChange={handleChange}></input>
-            <input type="password" name="fpass" placeholder="Re-enter Password" onChange={handleChange}></input>
-            <a href=""> <button class="button">
-                    <div>Register</div>
-                </button></a>
-
-                
-            <div>or</div>
-            <!-- <div class="button" onClick={() => navigate("/login")}>Login</div> -->
-            <div class="button">Login</div>
-            <div id='alert' class="alert">{alertMessage}</div>
-            <div class="loader" id='loader'><img src="../images/loader.gif" alt="" /></div>
-        </div>
+    <form action="/signup" method="post" class='register'>
+        <h1>Register</h1>
+        <input type="text" name="name" placeholder="Your Name" onChange={handleChange}></input>
+        <input type="text" name="email" placeholder="Your Email" onChange={handleChange}></input>
+        <input type="password" name="password" placeholder="Your Password" onChange={handleChange}></input>
+        <input type="password" name="fpass" placeholder="Re-enter Password" onChange={handleChange}></input>
+        <button class="button">Register</button>
+        <div>or</div>
+        <!-- <div class="button" onClick={() => navigate("/login")}>Login</div> -->
+        <a href="/login" class="button">Login</a>
+        <div id='alert' class="alert">{alertMessage}</div>
+        <div class="loader" id='loader'><img src="../images/loader.gif" alt="" /></div>
     </form>
-    
+
 </body>
 
 </html>
