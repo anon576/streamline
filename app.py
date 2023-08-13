@@ -58,11 +58,11 @@ class InternDetails(db.Model):
     sno = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(50), nullable=False)
-    address = db.Column(db.String(50), nullable=False)
+    address = db.Column(db.String(200), nullable=False)
     college = db.Column(db.String(50), nullable=False)
     date = db.Column(db.DateTime, default=datetime.utcnow)
     dob = db.Column(db.DateTime, nullable=False)
-    mno = db.Column(db.Integer, nullable=False)
+    mno = db.Column(db.BigInteger, nullable=False)
     internship = db.Column(db.String(50), nullable=False)
 
     # Add a foreign key to the RegUsers model
