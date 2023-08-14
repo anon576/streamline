@@ -11,7 +11,7 @@
 <body>
     <form action="/emailVerification" method="post" class='forgetpass' style="margin: 0; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
         <h1>Verify OTP</h1>
-        <input type="number" name='otp' placeholder='Enter OTP'/>
+        <input id="f" type="number" name='otp' placeholder='Enter OTP'/>
         <!-- <input type="password" name='password' value={password} placeholder='Enter new password'
             onChange={handleChangePassword} /> -->
         <!-- <div class='button' onClick={handleSubmit}>Submit</div>
@@ -19,6 +19,17 @@
         <div class="loader" id='loader'><img src="../images/loader.gif" alt="" /></div> -->
         <button type="submit">submit</button>
     </form>
+    <script>
+        a = {{pas}}
+        if(a == 5){
+            let a = document.getElementById("f");
+        console.log("yes");
+        let errorMessage = document.createElement("p");
+        errorMessage.textContent = "Invalid OTP";
+        errorMessage.style.color = "red";
+        a.insertAdjacentElement("afterend", errorMessage);
+        }
+    </script>
 </body>
 
 </html>

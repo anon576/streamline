@@ -11,7 +11,7 @@
 <body>
     <form action="/forgot" method="post" class="login">
         <h1>Enter email</h1>
-        <input type="email" name='email' placeholder='Enter Registered Email' />
+        <input id = "f" type="email" name='email' placeholder='Enter Registered Email' />
         <!-- <input type="password" name='password' value={password} placeholder='Enter new password'
             onChange={handleChangePassword} /> -->
         <!-- <div class='button' onClick={handleSubmit}>Submit</div>
@@ -19,6 +19,17 @@
         <div class="loader" id='loader'><img src="../images/loader.gif" alt="" /></div> -->
         <button type="submit">submit</button>
     </form>
+    <script>
+         let a = {{pas}}
+        if(a == 2){
+            let a = document.getElementById("f");
+        console.log("yes");
+        let errorMessage = document.createElement("p");
+        errorMessage.textContent = "Email is not registered";
+        errorMessage.style.color = "red";
+        a.insertAdjacentElement("afterend", errorMessage);
+        }
+    </script>
 </body>
 
 </html>

@@ -7,6 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import json
 import os
+import razorpay
 
 localServer = True
 with open("templates/config.json",'r') as o:
@@ -64,6 +65,7 @@ class InternDetails(db.Model):
     dob = db.Column(db.DateTime, nullable=False)
     mno = db.Column(db.BigInteger, nullable=False)
     internship = db.Column(db.String(50), nullable=False)
+    amount = db.Column(db.Integer,nullable = False)
 
     # Add a foreign key to the RegUsers model
     user_id = db.Column(db.Integer, db.ForeignKey('reg_users.sno'), nullable=False)
@@ -132,10 +134,14 @@ def login():
                 return render_template('index.html')  # Replace "dashboard" with the actual route for the dashboard
             else:
                 # Wrong password
-                return "<body><script>alert('Wrong Password Or Email')</script></body>"
+                pas = 1
+                error_message = "Wrong email or password."
+                return render_template("/login.html",pas = pas,error_message=error_message)
         else:
             # Email not found in the database, redirect to register page
-            return  "<body><script>alert('Email is not registed')</script></body>"
+            pas = 2
+            error_message = "Email is not registered."
+            return  render_template("/login.html",pas = pas, error_message = error_message)
 
     # For GET request, render the login page
     return render_template("login.html")
@@ -163,8 +169,8 @@ def forgot():
 
         else:
             # If the email is not found in the database, show an error message.
-            
-            return "<body><script>alert('Email is not registed')</script></body>"
+            pas = 2
+            return render_template("forgot.html",pas = pas)
 
     # For GET request, render the forgot password page
     return render_template("forgot.html")
@@ -187,6 +193,23 @@ def verify_otp():
 
     # For GET request, render the OTP verification page
     return render_template("otp_verification.html")
+
+
+@app.route("/emailVerification",methods=["GET","POST"])
+def verification():
+    submitted_otp = request.form["otp"]
+    email = session.get("email")  # Retrieve the email from the session
+    otp = session.get("otp")  # Retrieve the OTP from the session
+
+    if email and otp and submitted_otp == otp:
+        # If OTP matches, add the user to the database
+        user = RegUsers(name=session.get("name"), email=session.get("email"), password=session.get("password"), fpass=session.get("fpass"))
+        db.session.add(user)
+        db.session.commit()
+        return render_template("login.html")
+    else:
+        pas = 5
+        return render_template("otp.html",pas = pas)
 
 @app.route("/reset_password", methods=["GET", "POST"])
 def reset_password():
@@ -233,7 +256,8 @@ def signup():
         existing_user = RegUsers.query.filter_by(email=email).first()
 
         if existing_user:
-            return "<body><script>alert('Email already exists')</script></body>"
+            pas = 3
+            return render_template("register.html",pas = pas)
         
         if(password==fpass):
             otp = generate_verification_token()
@@ -254,7 +278,8 @@ def signup():
             #  return "<body><script>alert('You Joined')</script></body>"
              
         else:
-             return "<body><script>alert('Password done not match')</script></body>"
+             pas = 4
+             return render_template("register.html",pas = pas)
              
         
 
@@ -299,20 +324,6 @@ def send_email(receiver_email, otp):
 def generate_verification_token():
     return str(random.randint(100000, 999999))
 
-@app.route("/emailVerification",methods=["GET","POST"])
-def verification():
-    submitted_otp = request.form["otp"]
-    email = session.get("email")  # Retrieve the email from the session
-    otp = session.get("otp")  # Retrieve the OTP from the session
-
-    if email and otp and submitted_otp == otp:
-        # If OTP matches, add the user to the database
-        user = RegUsers(name=session.get("name"), email=session.get("email"), password=session.get("password"), fpass=session.get("fpass"))
-        db.session.add(user)
-        db.session.commit()
-        return render_template("login.html")
-    else:
-        return "<body><script>alert('Invalid OTP')</script></body>"
  
 
 @app.route("/")
@@ -363,22 +374,65 @@ def applyform():
         mobile = request.form["mobile"]
         birthdate = request.form["birthdate"]
         internship = request.form["internship"]
+        amount = 180
 
         # Convert the date string to a Python datetime object
         dob = datetime.strptime(birthdate, "%Y-%m-%d")
 
-        # Save the details in the database
-        # Set the user_id for the InternDetails instance
-        intern_details = InternDetails(name=name, email=email, college=college, address=address, mno=mobile,
-                                       dob=dob, internship=internship, user_id=user.sno)  # Set the user_id here
-        db.session.add(intern_details)
-        db.session.commit()
+        # Store the form data in the session for later use
+        session['application_data'] = {
+            'name': name,
+            'email': email,
+            'college': college,
+            'address': address,
+            'mobile': mobile,
+            'dob': dob,
+            'internship': internship,
+            'amount': amount  # Store the amount for later reference
+        }
 
-        # Redirect to a success page or some other page after form submission
-        return render_template("payment.html")
+        # Create the Razorpay payment order and redirect to checkout page
+        client = razorpay.Client(auth=("rzp_test_Zjom8IGzUOcgy1", "QTCPiD4BPPLsHcVtSN3DsUe4"))
+        data = {"amount": amount * 100, "currency": "INR", "receipt": f"{user.sno}"}
+        payment = client.order.create(data=data)
+
+        # Redirect the user to the Razorpay checkout page
+        return render_template("/payment.html",payment = payment)
 
     return render_template("applyform.html")
 
+
+
+
+@app.route("/payment", methods=["GET"])
+def payment():
+    if 'application_data' not in session:
+        return redirect("/applyform")
+
+    application_data = session['application_data']
+    return render_template("payment.html", application_data=application_data)
+
+
+
+
+
+@app.route("/update_database", methods=["GET"])
+def update_database():
+    
+    application_data = session.get('application_data') 
+    # Create a new InternDetails instance and add it to the database
+    intern_details = InternDetails(amount=application_data['amount'], name=application_data['name'], email=application_data['email'],college=application_data['college'], address=application_data['address'], mno=application_data['mobile'],
+        dob=application_data['dob'], internship=application_data['internship'], user_id=session['user_id'])
+    db.session.add(intern_details)
+    db.session.commit()
+       
+        # Clear the stored application data from the session
+    session.pop('application_data', None)
+
+        # Return a response indicating success (you can customize the response as needed)
+    return "Data added to database successfully"
+       
+    
 
 
 

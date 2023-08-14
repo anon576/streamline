@@ -11,18 +11,35 @@
 <body>
     <form action="/signup" method="post" class='register'>
         <h1>Register</h1>
-        <input type="text" name="name" placeholder="Your Name" onChange={handleChange}></input>
-        <input type="text" name="email" placeholder="Your Email" onChange={handleChange}></input>
-        <input type="password" name="password" placeholder="Your Password" onChange={handleChange}></input>
-        <input type="password" name="fpass" placeholder="Re-enter Password" onChange={handleChange}></input>
-        <button class="button">Register</button>
+        <input type="text" name="name" placeholder="Your Name" onChange={handleChange} required></input>
+        <input type="text" name="email" placeholder="Your Email" onChange={handleChange} required></input>
+        <input type="password" name="password" placeholder="Your Password" onChange={handleChange} required></input>
+        <input type="password" name="fpass" placeholder="Re-enter Password" onChange={handleChange} required></input>
+        <button id="f" class="button">Register</button>
         <div>or</div>
         <!-- <div class="button" onClick={() => navigate("/login")}>Login</div> -->
         <a href="/login" class="button">Login</a>
         <div id='alert' class="alert">{alertMessage}</div>
         <div class="loader" id='loader'><img src="../images/loader.gif" alt="" /></div>
     </form>
-
+    <script>
+         let a = {{pas}}
+        if(a == 3){
+            let a = document.getElementById("f");
+        console.log("yes");
+        let errorMessage = document.createElement("p");
+        errorMessage.textContent = "Email is already registered";
+        errorMessage.style.color = "red";
+        a.insertAdjacentElement("afterend", errorMessage);
+        }else if(a == 4){
+            let a = document.getElementById("f");
+        console.log("yes");
+        let errorMessage = document.createElement("p");
+        errorMessage.textContent = "Password does not match";
+        errorMessage.style.color = "red";
+        a.insertAdjacentElement("afterend", errorMessage);
+        }
+    </script>
 </body>
 
 </html>
