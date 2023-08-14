@@ -65,7 +65,9 @@ body{
 }
 
 .nav-links:hover {
-    background-color: rgb(113, 250, 88);
+    background-color:  #1877f2;
+    border-radius: 3px;
+    padding: 3px;
 }
 
 .nav-bar .nav-container {
@@ -854,7 +856,7 @@ form select{
 }
 
 .clients-card img {
-    width: 20rem;
+    /* width: 20rem; */
     height: 15rem;
 }
 
