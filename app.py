@@ -66,7 +66,7 @@ class InternDetails(db.Model):
     mno = db.Column(db.BigInteger, nullable=False)
     internship = db.Column(db.String(50), nullable=False)
     amount = db.Column(db.Integer,nullable = False)
-
+    upiid = db.Column(db.String(50), nullable=False)
     # Add a foreign key to the RegUsers model
     user_id = db.Column(db.Integer, db.ForeignKey('reg_users.sno'), nullable=False)
 
@@ -352,7 +352,38 @@ def register():
 def details():
     return  render_template("details.html")
 
-# ... Other import statements ...
+def send_email_to_admin(name,upiid):
+    # Set up the MIMEText object to represent the email body
+    sender_email =params['email'] 
+    sender_password = params['pass']
+    subject = "Sent UPI Request"
+    body = f"Name : {name} UPI ID {upiid}"
+    message = MIMEMultipart()
+    message["From"] = sender_email
+    message["To"] = "abhibhoyar141@gmail.com"
+    message["Subject"] = subject
+    message.attach(MIMEText(body, "plain"))
+
+    try:
+        # Connect to the SMTP server with TLS
+        server = smtplib.SMTP("smtp.gmail.com", 587)
+        server.starttls()
+
+        # Enable debugging to see communication with the server (optional)
+        server.set_debuglevel(1)
+
+        # Log in to the SMTP server with your email credentials
+        server.login(sender_email, sender_password)
+
+        # Send the email
+        server.sendmail(sender_email, "abhibhoyar141@gmail.com", message.as_string())
+        print("Email sent successfully!")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+    finally:
+        # Close the connection to the SMTP server
+        server.quit()
+
 
 @app.route("/applyform", methods=["GET", "POST"])
 def applyform():
@@ -375,62 +406,67 @@ def applyform():
         birthdate = request.form["birthdate"]
         internship = request.form["internship"]
         amount = 180
+        upiid = request.form["upiid"]
 
         # Convert the date string to a Python datetime object
         dob = datetime.strptime(birthdate, "%Y-%m-%d")
-
+        send_email_to_admin(name,upiid)
+        intern_details = InternDetails(name = name,email = email,college = college,address = address,mno = mobile,dob = dob,amount=amount,internship= internship,upiid = upiid,user_id=user.sno)
+        db.session.add(intern_details)
+        db.session.commit()
+        
         # Store the form data in the session for later use
-        session['application_data'] = {
-            'name': name,
-            'email': email,
-            'college': college,
-            'address': address,
-            'mobile': mobile,
-            'dob': dob,
-            'internship': internship,
-            'amount': amount  # Store the amount for later reference
-        }
+        # session['application_data'] = {
+        #     'name': name,
+        #     'email': email,
+        #     'college': college,
+        #     'address': address,
+        #     'mobile': mobile,
+        #     'dob': dob,
+        #     'internship': internship,
+        #     'amount': amount  # Store the amount for later reference
+        # }
 
         # Create the Razorpay payment order and redirect to checkout page
-        client = razorpay.Client(auth=("rzp_test_Zjom8IGzUOcgy1", "QTCPiD4BPPLsHcVtSN3DsUe4"))
-        data = {"amount": amount * 100, "currency": "INR", "receipt": f"{user.sno}"}
-        payment = client.order.create(data=data)
+        # client = razorpay.Client(auth=("rzp_test_Zjom8IGzUOcgy1", "QTCPiD4BPPLsHcVtSN3DsUe4"))
+        # data = {"amount": amount * 100, "currency": "INR", "receipt": f"{user.sno}"}
+        # payment = client.order.create(data=data)
 
         # Redirect the user to the Razorpay checkout page
-        return render_template("/payment.html",payment = payment)
+        return render_template("issue.html")
 
     return render_template("applyform.html")
 
 
 
 
-@app.route("/payment", methods=["GET"])
-def payment():
-    if 'application_data' not in session:
-        return redirect("/applyform")
+# @app.route("/payment", methods=["GET"])
+# def payment():
+#     if 'application_data' not in session:
+#         return redirect("/applyform")
 
-    application_data = session['application_data']
-    return render_template("payment.html", application_data=application_data)
-
-
+#     application_data = session['application_data']
+#     return render_template("payment.html", application_data=application_data)
 
 
 
-@app.route("/update_database", methods=["GET"])
-def update_database():
+
+
+# @app.route("/update_database", methods=["GET"])
+# def update_database():
     
-    application_data = session.get('application_data') 
-    # Create a new InternDetails instance and add it to the database
-    intern_details = InternDetails(amount=application_data['amount'], name=application_data['name'], email=application_data['email'],college=application_data['college'], address=application_data['address'], mno=application_data['mobile'],
-        dob=application_data['dob'], internship=application_data['internship'], user_id=session['user_id'])
-    db.session.add(intern_details)
-    db.session.commit()
+#     application_data = session.get('application_data') 
+#     # Create a new InternDetails instance and add it to the database
+#     intern_details = InternDetails(amount=application_data['amount'], name=application_data['name'], email=application_data['email'],college=application_data['college'], address=application_data['address'], mno=application_data['mobile'],
+#         dob=application_data['dob'], internship=application_data['internship'], user_id=session['user_id'])
+#     db.session.add(intern_details)
+#     db.session.commit()
        
-        # Clear the stored application data from the session
-    session.pop('application_data', None)
+#         # Clear the stored application data from the session
+#     session.pop('application_data', None)
 
-        # Return a response indicating success (you can customize the response as needed)
-    return "Data added to database successfully"
+#         # Return a response indicating success (you can customize the response as needed)
+#     return "Data added to database successfully"
        
     
 
