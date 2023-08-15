@@ -67,7 +67,7 @@ body{
 .nav-links:hover {
     background-color:  #1877f2;
     border-radius: 3px;
-    padding: 3px;
+    
 }
 
 .nav-bar .nav-container {
@@ -895,4 +895,17 @@ form select{
 
 .about h3{
     font-size: 1.3rem;
+}
+
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<issue>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+.login li {
+    padding: 5px;
+    white-space: nowrap;
+}
+
+@media(max-width:500px) {
+    .login li {
+        padding: 5px;
+        white-space: pre-wrap;
+    }
 }

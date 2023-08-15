@@ -89,34 +89,81 @@ class Idata(db.Model):
 
 
     
-@app.route("/createData",methods = ['GET','POST'])
+@app.route("/createData", methods=['GET', 'POST'])
 def createData():
     l = "/createData"
-    if request.method == "POST":
-        domain = request.form['domain']
-        week = request.form['week']
-        day = request.form['day']
-        content = request.form['content']
-        content = str(content)
 
-        idata = Idata(domain = domain,week=week,day = day,content = content)
-        db.session.add(idata)
-        db.session.commit()
-        return redirect("/createData")
+    # Check if the admin is logged in using session data
+    admin_logged_in = session.get("admin_logged_in", False)
+
+    if admin_logged_in:
+        if request.method == "POST":
+            domain = request.form['domain']
+            week = request.form['week']
+            day = request.form['day']
+            content = request.form['content']
+            content = str(content)
+
+            idata = Idata(domain=domain, week=week, day=day, content=content)
+            db.session.add(idata)
+            db.session.commit()
+            return redirect("/createData")
+
+        return render_template("createData.html", l=l)
+    else:
+        # Redirect to admin login page if admin is not logged in
+        return redirect("/adminlogin")
+
+@app.route("/updateData/<string:model>/<int:sno>",methods=['GET','POST'])
+def updateData(model,sno):
+    m = Idata.query.filter_by(domain=model, day=sno).first()
+    admin_logged_in = session.get("admin_logged_in", False)
+
+    if admin_logged_in:
+        if request.method == "POST":
+            domain = request.form['domain']
+            week = request.form['week']
+            day = request.form['day']
+            content = request.form['content']
+            content = str(content)
+
+            idata = Idata(domain=domain, week=week, day=day, content=content)
+            db.session.add(idata)
+            db.session.commit()
+            return render_template("update.html")
+
+        return render_template("update.html", m = m)
     
-    return render_template("createData.html",l = l)
+        
+    else:
+        # Redirect to admin login page if admin is not logged in
+        return redirect("/adminlogin")
+
+
+@app.route("/delateData/<string:model>/<int:sno>",methods=['GET','POST'])
+def delateData(model,sno):
+    
+    admin_logged_in = session.get("admin_logged_in", False)
+
+    if admin_logged_in:
+        m = Idata.query.filter_by(domain=model, day=sno).first()
+        db.session.delete(m)
+        db.session.commit()
+        return redirect("/admindashboard")
+    
+    return redirect("/adminlogin")
+
 
 
 
 @app.route("/internship/<string:model>/<int:sno>")
 def internship(model, sno):
-    m = Idata.query.filter_by(domain=model, day=sno).first()
+    m = Idata.query.filter_by(domain=model, sno=sno).first()
     
     if m is None or not m.content:
         return redirect("/dashboard")  # Redirect to dashboard.html
     
-    content = list(m.content)
-    return render_template("interns.html", m=m, content=content)
+    return render_template("interns.html", m=m)
 
 
 

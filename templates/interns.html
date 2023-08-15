@@ -5,74 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/content.css">
+    <link rel="stylesheet" href="../static/prism.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Web development</title>
+    <title>{{m.domain}}</title>
 </head>
 
 <body>
    
-    <div id="output"></div>
-    <button onclick="prev()">Prev</button>
-    <button onclick="next()">Next</button>
+    {{m.content|safe}}
+    <button href = "/internship/{{m.domain}}/{{m.sno - 1}}">Prev</button>
+    <button href = "/internship/{{m.domain}}/{{m.sno + 1}}">Next</button>
 
     <div class="dark">
         <!-- <i class="fa fa-circle-half"></i> -->
         <i class="fa fa-car fa-1x" onclick="myFunction()"></i>
     </div>
-
+    <script src="../static/prism.js"></script>
     <script>
         function myFunction() {
             var element = document.body;
-            element.classList.toggle("dark-mode");
-            // var element2 = document.
+            element.classList.toggle("dark-mode")
         }
 
-
-        // Sample array of values
-        var s = {{m.content | tojson | safe }};
-       
-        dataArray = s.split("+++++");
-     
-        var currentIndex = 0; // Start with the first element of the array
-    
-        // Function to display the current value
-        function displayValue() {
-    var currentContent = dataArray[currentIndex];
-    
-    // Check if the value at the first index is a comma
-    if (currentContent.charAt(0) === ',') {
-        // Display the content from the second character onward
-        document.getElementById("output").innerText = currentContent.slice(1);
-    } else {
-        // Display the content as normal
-        document.getElementById("output").innerText = currentContent;
-    }
-}
-
-    
-        // Function to navigate to the previous value
-        function prev() {
-          if (currentIndex > 0) {
-            currentIndex--;
-            displayValue();
-          }
-        }
-    
-        function next() {
-            if (currentIndex < dataArray.length - 1) {
-                currentIndex++;
-                displayValue();
-            } else {
-                // Redirect to the given link when content is finished
-                window.location.href = "/internship/{{m.domain}}/{{m.day + 1}}";
-            }
-        }
-    
-
-    // Initial display
-    displayValue();
-
-    </script>
+   </script>
 </body>
 
 </html>
