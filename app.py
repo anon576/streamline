@@ -110,9 +110,13 @@ def createData():
 
 @app.route("/internship/<string:model>/<int:sno>")
 def internship(model, sno):
-   m = Idata.query.filter_by(domain = model,day = sno).first()
-   content = list(m.content)
-   return render_template("interns.html",m= m,content = content)
+    m = Idata.query.filter_by(domain=model, day=sno).first()
+    
+    if m is None or not m.content:
+        return redirect("/dashboard")  # Redirect to dashboard.html
+    
+    content = list(m.content)
+    return render_template("interns.html", m=m, content=content)
 
 
 
