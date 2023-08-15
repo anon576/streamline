@@ -102,7 +102,6 @@ def createData():
             week = request.form['week']
             day = request.form['day']
             content = request.form['content']
-            content = str(content)
 
             idata = Idata(domain=domain, week=week, day=day, content=content)
             db.session.add(idata)
@@ -116,21 +115,20 @@ def createData():
 
 @app.route("/updateData/<string:model>/<int:sno>",methods=['GET','POST'])
 def updateData(model,sno):
-    m = Idata.query.filter_by(domain=model, day=sno).first()
+    
     admin_logged_in = session.get("admin_logged_in", False)
 
     if admin_logged_in:
+        m = Idata.query.filter_by(domain=model, day=sno).first()
         if request.method == "POST":
-            domain = request.form['domain']
-            week = request.form['week']
-            day = request.form['day']
-            content = request.form['content']
-            content = str(content)
-
-            idata = Idata(domain=domain, week=week, day=day, content=content)
-            db.session.add(idata)
+            
+            m.domain = request.form['domain']
+            m.week = request.form['week']
+            m.day = request.form['day']
+            m.content = request.form['content']
+            db.session.add(m)
             db.session.commit()
-            return render_template("update.html")
+            return render_template("update.html",m =m)
 
         return render_template("update.html", m = m)
     
@@ -158,7 +156,7 @@ def delateData(model,sno):
 
 @app.route("/internship/<string:model>/<int:sno>")
 def internship(model, sno):
-    m = Idata.query.filter_by(domain=model, sno=sno).first()
+    m = Idata.query.filter_by(domain=model, day=sno).first()
     
     if m is None or not m.content:
         return redirect("/dashboard")  # Redirect to dashboard.html

@@ -4,9 +4,9 @@
     font-family: 'Courier New', Courier, monospace;
 }
 
-html{
+/* html{
     background: white;
-}
+} */
 
 body {
     width: 70%;
@@ -62,7 +62,7 @@ img {
 pre {
     background: rgb(244, 242, 242);
     padding: 1rem 0 0 .5rem;
-
+    /* white-space: pre-wrap; */
     overflow-x: scroll;
     color: black;
 }

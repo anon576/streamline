@@ -13,13 +13,21 @@
 <body>
    
     {{m.content|safe}}
-    <button href = "/internship/{{m.domain}}/{{m.sno - 1}}">Prev</button>
-    <button href = "/internship/{{m.domain}}/{{m.sno + 1}}">Next</button>
+    <button ><a href = "/internship/{{m.domain}}/{{m.day - 1}}">Prev</a></button>
+    <button ><a href = "/internship/{{m.domain}}/{{m.day + 1}}">Next</a></button>
+
+
+
+
 
     <div class="dark">
         <!-- <i class="fa fa-circle-half"></i> -->
         <i class="fa fa-car fa-1x" onclick="myFunction()"></i>
     </div>
+
+
+
+
     <script src="../static/prism.js"></script>
     <script>
         function myFunction() {
