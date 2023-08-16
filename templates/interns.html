@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/content.css">
-    <link rel="stylesheet" href="../static/prism.css">
+    <link rel="stylesheet" href="/static/prism.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>{{m.domain}}</title>
 </head>
 
 <body>
    
-    {{m.content|safe}}
+  {{(m.content|safe)}}
     <button ><a href = "/internship/{{m.domain}}/{{m.day - 1}}">Prev</a></button>
     <button ><a href = "/internship/{{m.domain}}/{{m.day + 1}}">Next</a></button>
 
@@ -28,7 +28,7 @@
 
 
 
-    <script src="../static/prism.js"></script>
+    <script src="/static/prism.js"></script>
     <script>
         function myFunction() {
             var element = document.body;
