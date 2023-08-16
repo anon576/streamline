@@ -217,7 +217,8 @@ def forgot():
             session["email"] = email
 
             # Send the OTP to the user's email
-            send_email(email, otp)
+            a = "forgot"
+            send_email(email, otp, a)
 
             # Redirect the user to the OTP verification page
             return redirect("/verify_otp")
@@ -347,8 +348,20 @@ def send_email(receiver_email, otp,name):
     # Set up the MIMEText object to represent the email body
     sender_email =params['email'] 
     sender_password = params['pass']
-    subject = "🌟 Your OTP for Verification 🌟"
-    body = f'''Dear {name},
+    if name == "forgot":
+        subject =  "Reset Your Password - Your OTP Inside"
+        body = f'''Hello
+
+To reset your password, 
+here's your One-Time Password (OTP): {otp}
+
+Enter this OTP on the reset page to regain access to your account. This code will expire in 2 minutes.
+
+Stay secure,
+CodeStream Team'''
+    else:
+        subject = "🌟 Your OTP for Verification 🌟"
+        body = f'''Dear {name},
 
 Welcome to Codestream! 🚀
 
@@ -362,9 +375,9 @@ We understand that every coding adventure begins with a single step, and so does
 
 But wait, there's more! At Codestream, we believe in adding a personal touch. 🌈 Just like every line of code you craft, your identity matters to us. So, along with your OTP, here's a gentle reminder of your uniqueness:
 
-"Your creativity knows no bounds, [User's Name]! Embrace the infinite possibilities that lie ahead as you embark on your coding odyssey."
+"Your creativity knows no bounds, {name}! Embrace the infinite possibilities that lie ahead as you embark on your coding odyssey."
 
-Feel free to enter this OTP within the next [Time Limit] minutes to start your journey with Codestream. If you need any assistance, our dedicated support team is just a click away.
+Feel free to enter this OTP within the next 2 minutes to start your journey with Codestream. If you need any assistance, our dedicated support team is just a click away.
 
 Thank you for choosing Codestream to be part of your coding story. Get ready to unlock a world of collaboration, innovation, and endless opportunities.
 
@@ -372,6 +385,9 @@ Happy coding!
 
 Warm regards,
 The Codestream Team 🌟'''
+    
+    
+    
     message = MIMEMultipart()
     message["From"] = sender_email
     message["To"] = receiver_email
