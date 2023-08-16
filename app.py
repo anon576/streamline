@@ -382,7 +382,7 @@ def generate_verification_token():
 
  
 
-@app.route("/")
+@app.route("/home")
 def home():
     return  render_template("index.html")
 
@@ -494,7 +494,7 @@ def applyform():
     return render_template("applyform.html")
 
 
-@app.route('/payment')
+@app.route('/')
 def webprint():
     return render_template('dataFrom.htm')
 
