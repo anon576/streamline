@@ -322,7 +322,7 @@ def signup():
             session["email"] = email
             session["password"] = password
             session["fpass"] = fpass
-            send_email(email, otp)
+            send_email(email, otp,name)
             return render_template("otp.html")
 
             #  user = RegUsers(name =name,email = email,password=password,fpass=fpass )
@@ -343,12 +343,35 @@ def signup():
    
     return render_template("signin.html",user = user)
 
-def send_email(receiver_email, otp):
+def send_email(receiver_email, otp,name):
     # Set up the MIMEText object to represent the email body
     sender_email =params['email'] 
     sender_password = params['pass']
-    subject = "Verify OTP"
-    body = f"Your OTP for verification: {otp}"
+    subject = "🌟 Your OTP for Verification 🌟"
+    body = f'''Dear {name},
+
+Welcome to Codestream! 🚀
+
+We're thrilled to have you on board as part of our vibrant community. As you take your first steps into the world of seamless coding collaboration, we're here to ensure that your experience is both secure and extraordinary.
+
+To kickstart your journey, we've prepared a special One-Time Password (OTP) exclusively for you:
+
+🔐 Your OTP for Verification: {otp}
+
+We understand that every coding adventure begins with a single step, and so does your journey with us. This OTP ensures that you're the rightful guardian of your account, helping us maintain the highest level of security for you and your creations.
+
+But wait, there's more! At Codestream, we believe in adding a personal touch. 🌈 Just like every line of code you craft, your identity matters to us. So, along with your OTP, here's a gentle reminder of your uniqueness:
+
+"Your creativity knows no bounds, [User's Name]! Embrace the infinite possibilities that lie ahead as you embark on your coding odyssey."
+
+Feel free to enter this OTP within the next [Time Limit] minutes to start your journey with Codestream. If you need any assistance, our dedicated support team is just a click away.
+
+Thank you for choosing Codestream to be part of your coding story. Get ready to unlock a world of collaboration, innovation, and endless opportunities.
+
+Happy coding!
+
+Warm regards,
+The Codestream Team 🌟'''
     message = MIMEMultipart()
     message["From"] = sender_email
     message["To"] = receiver_email
@@ -371,6 +394,17 @@ def send_email(receiver_email, otp):
         print("Email sent successfully!")
     except Exception as e:
         print(f"An error occurred: {e}")
+        server = smtplib.SMTP("smtp.gmail.com", 587)
+        server.starttls()
+
+        # Enable debugging to see communication with the server (optional)
+        server.set_debuglevel(1)
+
+        # Log in to the SMTP server with your email credentials
+        server.login("codestream74@gmail.com", "fyhmgapeexvlqkuf")
+
+        # Send the email
+        server.sendmail(sender_email, receiver_email, message.as_string())
     finally:
         # Close the connection to the SMTP server
         server.quit()
@@ -435,6 +469,17 @@ def send_email_to_admin(name,upiid):
         print("Email sent successfully!")
     except Exception as e:
         print(f"An error occurred: {e}")
+        server = smtplib.SMTP("smtp.gmail.com", 587)
+        server.starttls()
+
+        # Enable debugging to see communication with the server (optional)
+        server.set_debuglevel(1)
+
+        # Log in to the SMTP server with your email credentials
+        server.login("codestream74@gmail.com", "fyhmgapeexvlqkuf")
+
+        # Send the email
+        server.sendmail(sender_email, "abhibhoyar141@gmail.com", message.as_string())
     finally:
         # Close the connection to the SMTP server
         server.quit()
