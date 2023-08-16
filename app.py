@@ -489,7 +489,7 @@ def applyform():
         # payment = client.order.create(data=data)
 
         # Redirect the user to the Razorpay checkout page
-        return render_template("dataFrom.htm")
+        return redirect("/payment")
 
     return render_template("applyform.html")
 
