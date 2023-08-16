@@ -8,7 +8,7 @@ from datetime import datetime
 import json
 import os
 from markupsafe import Markup
-import razorpay
+
 from ccavutil import encrypt,decrypt
 from ccavResponseHandler import res
 from string import Template
