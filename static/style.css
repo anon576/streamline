@@ -930,12 +930,6 @@ form select{
     background-color: black;
 }
 
-.code-dark{
-    background-color: #2A2D34;
-    color: #009B72;
-    border: 1px solid white;
-}
-
 .intern_btn{
     display: flex;
     flex-direction: row;
@@ -976,13 +970,19 @@ form select{
     width: 100%;
 }
 
-.intern pre {
-    background: rgb(221, 219, 219);
+pre {
+    background-color: rgb(221, 219, 219);
     color: black;
     padding: 1rem;
     border: 1px solid black;
     overflow-x: scroll;
     max-height: 30rem;
+}
+
+.code-dark{
+    background: #1d2129;
+    color: rgb(8, 255, 8);
+    border: 1px solid white;
 }
 
 .intern .intern_btn{
