@@ -3,9 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="/static/style.css">
+    
     <title>Update Internship Data</title>
+    <link rel="icon" href="/static/images/logo.png" type="image/x-icon">
 </head>
 <body>
+    <div>
     <form method="POST" action="/updateData/{{m.domain}}/{{m.day}}">
         <label for="domain">Domain:</label>
         <select name="domain" id="domain" ><option value="Python">Python</option>
@@ -31,6 +35,8 @@
 
         <button type="submit">Add/Update Data</button>
     </form>
-    <a href="/admindashboard">Return To Dashboard</a>
+</div>
+<a href="/admindashboard" style="display: flex; justify-content: center;"><button>Return To Dashboard</button></a>
+</div>
 </body>
 </html>

@@ -909,3 +909,187 @@ form select{
         white-space: pre-wrap;
     }
 }
+
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<intern_page>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+.intern_pages {
+    width: 70%;
+    margin-left: 15%;
+    padding: 0rem 4rem;
+    border: 2px dashed black;
+    border-radius: 4px;
+    background-color: whitesmoke;
+}
+
+.dark-mode {
+    background: #2A2B2A;
+    color: aliceblue;
+    border: 2px dashed white;
+}
+
+.back{
+    background-color: black;
+}
+
+.code-dark{
+    background-color: #2A2D34;
+    color: #009B72;
+    border: 1px solid white;
+}
+
+.intern_btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+@media(max-width:1000px){
+    .intern_pages{
+        padding:0 2rem;
+    }
+}
+
+.intern h1 {
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.intern h2{
+    font-size: 1.4rem;
+}
+
+.intern h3{
+    font-size: 1rem;
+}
+
+.intern h4{
+    font-size: 1.1rem;
+    background: #E1DD8F;
+    margin: 0;
+    padding: 1.2rem;
+    width: 100%;
+    border-radius: 5px;
+    font-weight: 500;
+    overflow-wrap: break-word;
+}
+
+.intern img {
+    width: 100%;
+}
+
+.intern pre {
+    background: rgb(221, 219, 219);
+    color: black;
+    padding: 1rem;
+    border: 1px solid black;
+    overflow-x: scroll;
+    max-height: 30rem;
+}
+
+.intern .intern_btn{
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.intern button{
+    padding: .5rem 2rem;
+    font-size: 1rem;
+    background: #FF6B35;
+    border-radius: 4px;
+    position: relative;
+    margin: 1.5rem 0;
+    cursor: pointer;
+}
+
+.intern .dark{
+    font-size: 1.3rem;
+    position: fixed;
+    top: 90vh;
+    left: 81vw;
+    cursor: pointer;
+}
+
+@media(max-width:900px){
+    .intern .dark{
+        top: 90vh;
+        left: 80vw;
+    }
+}
+
+@media(max-width:600px){
+    .intern_pages{
+        width: 100%;
+        margin-left: 0%;
+        border: none;
+    }
+
+    .intern .dark{
+        top: 92vh;
+        left: 92.6vw;
+    }
+
+    .intern h1{
+        margin: 0;
+        padding: 1rem 0;
+    }
+
+}
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<admin>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+.admin{
+    width: 80%;
+    margin-left: 10%;
+}
+
+table{
+    align-items: center;
+    width: 80%;
+}
+
+.admin_btn{
+    /* align-items: center; */
+    padding: 0;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin: auto;
+    margin-top: 1rem;
+}
+
+table th{
+    text-align: left;
+}
+
+@media(max-width:600px){
+    .admin{
+        width: 100%;
+        margin: 0%;
+    }
+    table{
+        align-items: center;
+        width: 100%;
+    }
+}
+
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<create_data>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+
+.create_data{
+    width: 50%;
+    margin-left: 0%;
+}
+
+.create_data textarea{
+    padding: 10px;
+    height: 10rem;
+    overflow: scroll;
+}
+
+@media(max-width:800px){
+    .create_data{
+        width: 70%;
+        margin-left: 0%;
+    }
+
+    .create_data h1{
+        font-size: 1.5rem;
+    }
+}

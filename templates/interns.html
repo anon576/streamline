@@ -4,38 +4,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/content.css">
-    <link rel="stylesheet" href="/static/prism.css">
+    <link rel="stylesheet" href="/static/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="../static/images/logo.png" type="image/x-icon">
     <title>{{m.domain}}</title>
 </head>
 
 <body>
-   
-  {{(m.content|safe)}}
-    <button ><a href = "/internship/{{m.domain}}/{{m.day - 1}}">Prev</a></button>
-    <button ><a href = "/internship/{{m.domain}}/{{m.day + 1}}">Next</a></button>
+
+    <div class="intern" id="intern">
+        <div class="intern_pages" id="intern_pages">
+            {{(m.content|safe)}}
+            <div class="intern_btn">
+                <a href="/internship/{{m.domain}}/{{m.day - 1}}"><button>Prev</button></a>
+                <a href="/internship/{{m.domain}}/{{m.day + 1}}"><button>Next</button></a>
+            </div>
+            <div class="back_dashboard" style="display: flex; justify-content: center;">
+                <a href="/dashboard"><button>Back to Dashboard</button></a>
+            </div>
 
 
 
 
 
-    <div class="dark">
-        <!-- <i class="fa fa-circle-half"></i> -->
-        <i class="fa fa-car fa-1x" onclick="myFunction()"></i>
+            <div class="dark">
+                <!-- <i class="fa fa-circle-half"></i> -->
+                <i class="fa fa-adjust" onclick="myFunction()"></i>
+            </div>
+        </div>
     </div>
 
 
 
 
-    <script src="/static/prism.js"></script>
+
     <script>
         function myFunction() {
-            var element = document.body;
+            var element = document.getElementById("intern_pages");
+            var backGround = document.getElementById("intern");
+            // var codeBackground = document.getElementById("code");
+            // codeBackground.classList.toggle("code-dark");
+            backGround.classList.toggle("back");
             element.classList.toggle("dark-mode")
+
         }
 
-   </script>
+    </script>
 </body>
 
 </html>

@@ -1,12 +1,16 @@
 <!-- admin_login.html -->
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Admin Login</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="icon" href="../static/images/logo.png" type="image/x-icon">
 </head>
+
 <body>
-    <h2>Admin Login</h2>
-    <form method="POST" action="/adminlogin">
+    <form method="POST" action="/adminlogin" class="login">
+        <h2>Admin Login</h2>
         <label for="admin_username">Admin Username:</label>
         <input type="text" id="admin_username" name="admin_username" required><br>
 
@@ -15,5 +19,7 @@
 
         <button type="submit">Login</button>
     </form>
+
 </body>
+
 </html>
