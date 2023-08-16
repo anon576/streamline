@@ -359,6 +359,37 @@ Enter this OTP on the reset page to regain access to your account. This code wil
 
 Stay secure,
 CodeStream Team'''
+    elif name == "apply":
+        subject = "Confirmation of Internship Application & Next Steps"
+        body = f'''Hello ,
+
+Congratulations on taking the first step towards an enriching learning experience with our internship program at CodeStream!
+
+
+We're excited to inform you that your application for the internship has been successfully received. Your dedication to growth and learning aligns perfectly with our values, and we can't wait to have you on board.
+
+Next Steps:
+
+Offer Letter: Following a thorough review of your application, we're pleased to share that you will receive your official offer letter within the next 24 hours.
+
+Payment: Once you receive the offer letter, a link to make the payment for the internship program will be provided. Please note that your seat in the program will be confirmed upon successful payment.
+
+In the meantime, we want to ensure that you're well-prepared to dive into this exciting opportunity. We've prepared a comprehensive tutorial that will guide you through accessing your internship materials on our user-friendly dashboard:
+
+Accessing Your Internship Tutorial:
+
+Log in to your account on our website using your registered credentials.
+Navigate to the "Dashboard" section after logging in.
+Look for the dedicated "Internship Program" tab within the dashboard.
+
+Click on the tab to access your personalized internship materials, resources, and schedule.
+We're committed to providing you with the tools and support you need to make the most of your internship journey. If you have any questions along the way, don't hesitate to reach out to our dedicated support team at WhatsApp NO : +91 78419 82719 .
+
+Thank you once again for choosing CodeStream for your internship experience. We look forward to having you join our dynamic team and grow together!
+
+Best regards,
+CodeStream Team
+'''
     else:
         subject = "🌟 Your OTP for Verification 🌟"
         body = f'''Dear {name},
@@ -526,6 +557,8 @@ def applyform():
 
         # Convert the date string to a Python datetime object
         dob = datetime.strptime(birthdate, "%Y-%m-%d")
+        a = "apply"
+        send_email(email,"user_id",a)
         send_email_to_admin(name,upiid)
         intern_details = InternDetails(name = name,email = email,college = college,address = address,mno = mobile,dob = dob,amount=amount,internship= internship,upiid = upiid,user_id=user.sno)
         db.session.add(intern_details)
