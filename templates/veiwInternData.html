@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veiw Internship Data</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="icon" href="../static/images/logo.png" type="image/x-icon">
+</head>
+<body>
+    <div class="admin">
+        <h2>Admin Data Veiw</h2>
+        <table align="center">
+            <tr>
+                <th>Week</th>
+                <th>Day</th>
+                <th>Content</th>
+                <th>Update</th>
+                <th>Delate</th>
+            </tr>
+            {% for data in data %}
+            <tr>
+                <td>{{ data.week }}</td>
+                <td>{{ data.day }}</td>
+                <td>{{ data.content[0:100] }}</td>
+                <td><a href="/updateData/{{data.domain}}/{{data.day}}"><button type="submit">Update</button></a></td>
+                <td><a href="/delateData/{{data.domain}}/{{data.day}}"><button type="submit">Delate</button></a></td>
+            </tr>
+            {% endfor %}
+
+    </div>
+</body>
+</html>

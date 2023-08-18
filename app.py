@@ -488,15 +488,15 @@ def register():
 def details():
     return  render_template("details.html")
 
-def send_email_to_admin(name,upiid):
+def send_email_to_admin(name,upiid,email,college,address,mobile,birthdate,internship,amount,user_id):
     # Set up the MIMEText object to represent the email body
     sender_email =params['email'] 
     sender_password = params['pass']
-    subject = "Sent UPI Request"
-    body = f"Name : {name} UPI ID {upiid}"
+    subject = "New User Applied for Internship"
+    body = f"Name : {name}\n UPI ID : {upiid}\nEmail : {email}\nCollege : {college}\nAddress : {address}\nMobile : {mobile}\nBirthdate : {birthdate}\nInternship : {internship}\nAmount : {amount}\nUserID : {user_id}"
     message = MIMEMultipart()
     message["From"] = sender_email
-    message["To"] = "abhibhoyar141@gmail.com"
+    message["To"] = "codestream74@gmail.com"
     message["Subject"] = subject
     message.attach(MIMEText(body, "plain"))
 
@@ -512,7 +512,7 @@ def send_email_to_admin(name,upiid):
         server.login(sender_email, sender_password)
 
         # Send the email
-        server.sendmail(sender_email, "abhibhoyar141@gmail.com", message.as_string())
+        server.sendmail(sender_email, "codestream74@gmail.com", message.as_string())
         print("Email sent successfully!")
     except Exception as e:
         print(f"An error occurred: {e}")
@@ -526,7 +526,7 @@ def send_email_to_admin(name,upiid):
         server.login("codestream74@gmail.com", "fyhmgapeexvlqkuf")
 
         # Send the email
-        server.sendmail(sender_email, "abhibhoyar141@gmail.com", message.as_string())
+        server.sendmail("codestream74@gmail.com", "codestream63@gmail.com", message.as_string())
     finally:
         # Close the connection to the SMTP server
         server.quit()
@@ -554,15 +554,15 @@ def applyform():
         internship = request.form["internship"]
         amount = 180
         upiid = request.form["upiid"]
-
+        user_id=user.sno
         # Convert the date string to a Python datetime object
         dob = datetime.strptime(birthdate, "%Y-%m-%d")
         a = "apply"
         send_email(email,"user_id",a)
-        send_email_to_admin(name,upiid)
-        intern_details = InternDetails(name = name,email = email,college = college,address = address,mno = mobile,dob = dob,amount=amount,internship= internship,upiid = upiid,user_id=user.sno)
-        db.session.add(intern_details)
-        db.session.commit()
+        send_email_to_admin(name,upiid,email,college,address,mobile,birthdate,internship,amount,user_id)
+        # intern_details = InternDetails(name = name,email = email,college = college,address = address,mno = mobile,dob = dob,amount=amount,internship= internship,upiid = upiid,user_id=user.sno)
+        # db.session.add(intern_details)
+        # db.session.commit()
         
         # Store the form data in the session for later use
         # session['application_data'] = {
@@ -685,4 +685,68 @@ def dashboard():
 
     return render_template("dashboard.html", enrolled_internships=enrolled_internships)
 
+@app.route("/AdminApplyform", methods=["GET", "POST"])
+def adminApplyform():
 
+    admin_logged_in = session.get("admin_logged_in", False)
+
+    if admin_logged_in:
+        if request.method == "POST":
+        # Get the values submitted by the user in the form
+            name = request.form["name"]
+            email = request.form["email"]
+            college = request.form["college"]
+            address = request.form["address"]
+            mobile = request.form["mobile"]
+            birthdate = request.form["birthdate"]
+            internship = request.form["internship"]
+            amount = 180
+            upiid = request.form["upiid"]
+            user_id = request.form["userid"]
+            # Convert the date string to a Python datetime object
+            dob = datetime.strptime(birthdate, "%Y-%m-%d")
+            a = "apply"
+            # send_email(email,"user_id",a)
+            # send_email_to_admin(name,upiid,email,college,address,mobile,birthdate,internship,amount)
+            intern_details = InternDetails(name = name,email = email,college = college,address = address,mno = mobile,dob = dob,amount=amount,internship= internship,upiid = upiid,user_id = user_id)
+            db.session.add(intern_details)
+            db.session.commit()
+            return redirect("/AdminApplyform")
+        return render_template("adminApplyfrom.html")
+
+        
+    else:
+        # Redirect to admin login page if admin is not logged in
+        return redirect("/adminlogin")
+        
+        # Store the form data in the session for later use
+        # session['application_data'] = {
+        #     'name': name,
+        #     'email': email,
+        #     'college': college,
+        #     'address': address,
+        #     'mobile': mobile,
+        #     'dob': dob,
+        #     'internship': internship,
+        #     'amount': amount  # Store the amount for later reference
+        # }
+
+        # Create the Razorpay payment order and redirect to checkout page
+        # client = razorpay.Client(auth=("rzp_test_Zjom8IGzUOcgy1", "QTCPiD4BPPLsHcVtSN3DsUe4"))
+        # data = {"amount": amount * 100, "currency": "INR", "receipt": f"{user.sno}"}
+        # payment = client.order.create(data=data)
+
+        # Redirect the user to the Razorpay checkout page
+        
+@app.route("/veiwIntership",methods = ['GET','POST'])
+def veiwInternship():
+    admin_logged_in = session.get("admin_logged_in", False)
+
+    if admin_logged_in:
+        if request.method == "POST":
+            m = request.form["domain"]
+            data = Idata.query.filter_by(domain = m)
+            return render_template("veiwInternData.html", data = data)
+    else:
+        # If admin is not logged in, redirect to the admin login page
+        return redirect("/adminlogin")

@@ -27,9 +27,24 @@
         </table>
         <div class="admin_btn">
             <a href="/createData"><button>create data</button></a>
+            <a href="/AdminApplyform"><button>Add Intern Data</button></a> 
+           
             <a href="/adminlogout"><button>Logout</button></a>
         </div>
     </div>
+    <form action="/veiwIntership", method="post">
+        <label for="internship">Select Internship:</label>
+        <select name="domain" id="internship" required>
+            <option value="Python">Python</option>
+            <option value="Java">Java</option>
+            <option value="C">C</option>
+            <option value="C++">Cpp</option>
+            <option value="blockchain">Blockchain</option>
+            <option value="ai">AIandChatGpt</option>
+            <option value="webd">WebD</option>
+        </select><br>
+        <button type="submit">Submit</button>
+    </form>
 </body>
 
 </html>
