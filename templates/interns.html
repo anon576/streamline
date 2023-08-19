@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="icon" href="../static/images/logo.png" type="image/x-icon">
+    <link rel="icon" href="/static/images/logo.png" type="image/x-icon">
     <title>{{m.domain}}</title>
 </head>
 
@@ -39,16 +39,22 @@
 
 
     <script>
-        function myFunction() {
+       function myFunction() {
             var element = document.getElementById("intern_pages");
             var backGround = document.getElementById("intern");
             var codeBackground = document.getElementById("code");
-            codeBackground.classList.toggle("code-dark");
-            backGround.classList.toggle("back");
-            element.classList.toggle("dark-mode")
+
+            if(codeBackground){
+                codeBackground.classList.toggle("code-dark")
+                backGround.classList.toggle("back")
+                element.classList.toggle("dark-mode")
+            }
+            else{
+                backGround.classList.toggle("back")
+                element.classList.toggle("dark-mode")
+            }
 
         }
-
     </script>
 </body>
 
