@@ -408,7 +408,7 @@ I hope this email finds you well. We are thrilled to welcome you aboard as our n
 During your internship, you'll have the opportunity to learn and grow, contribute your unique skills and perspectives, and gain valuable experience in your applied domain. We believe that your fresh enthusiasm will make a significant impact on your skillset. we recommend you to  share your offer letter on linked in to add up to its value.
 
 
-As you settle in, please don't hesitate to contact our support team at codestream74@gmail.com or +91 78419 82719. Our team is here to support your every step of the way. All the best for your tasks and learnings. We can't wait to get you started with the learning odyssey! 
+As you settle in, please don't hesitate to contact our support team at codestream74@gmail.com or +91 78419 82719(WhatsApp). Our team is here to support your every step of the way. All the best for your tasks and learnings. We can't wait to get you started with the learning odyssey! 
 
 
 Best regards, 
