@@ -48,6 +48,7 @@ class RegUsers(db.Model):
     fpass = db.Column(db.String(50), nullable=False)
     date = db.Column(db.DateTime, default=datetime.utcnow)
     userprogress = db.Column(db.String(100),nullable = True)
+    submission = db.Column(db.String(50000),nullable = True)
     # Add a one-to-many relationship to the InternDetails model
     internships = db.relationship('InternDetails', backref='user', lazy=True)
 
@@ -157,11 +158,22 @@ def delateData(model,sno):
 
 
 
-@app.route("/internship/<string:model>/<int:sno>")
+
+@app.route("/internship/<string:model>/<int:sno>",methods= ['GET','POST'])
 def internship(model, sno):
     if 'user_id' in session:
         m = Idata.query.filter_by(domain=model, day=sno).first()
         user = RegUsers.query.get(session['user_id'])
+        if request.method == "POST":
+            code = request.form["code"]
+            s = user.submission
+            s = ast.literal_eval(s)
+            s[model].append(code)
+            user.submission = str(s)
+            db.session.add(user)
+            db.session.commit()
+            return redirect(f'/internship/{m.domain}/{m.day}')
+        
         up = user.userprogress
         up  = ast.literal_eval(up)
         up[model] = sno
@@ -225,7 +237,7 @@ def forgot():
 
             # Send the OTP to the user's email
             a = "forgot"
-            send_email(email, otp, a)
+            send_email("forgot",email, otp, a)
 
             # Redirect the user to the OTP verification page
             return redirect("/verify_otp")
@@ -266,7 +278,7 @@ def verification():
 
     if email and otp and submitted_otp == otp:
         # If OTP matches, add the user to the database
-        user = RegUsers(name=session.get("name"), email=session.get("email"), password=session.get("password"), fpass=session.get("fpass"),userprogress = session.get("userprogress"))
+        user = RegUsers(name=session.get("name"), email=session.get("email"), password=session.get("password"), fpass=session.get("fpass"),userprogress = session.get("userprogress"),submission = session.get("submission"))
         db.session.add(user)
         db.session.commit()
         return render_template("login.html")
@@ -324,6 +336,15 @@ def signup():
             "blockchain":0,
             "Java":0
         })
+        submission = str({
+            "Python":[],
+            "C":[],
+            "C++":[],
+            "webd":[],
+            "ai":[],
+            "blockchain":[],
+            "Java":[]
+        })
 
         existing_user = RegUsers.query.filter_by(email=email).first()
 
@@ -340,7 +361,8 @@ def signup():
             session["password"] = password
             session["fpass"] = fpass
             session['userprogress'] = userprogress
-            send_email(email, otp,name)
+            session['submission'] = submission
+            send_email("otp",email, otp,name)
             return render_template("otp.html")
 
             #  user = RegUsers(name =name,email = email,password=password,fpass=fpass )
@@ -361,11 +383,11 @@ def signup():
    
     return render_template("signin.html",user = user)
 
-def send_email(receiver_email, otp,name):
+def send_email(r,receiver_email, otp,name):
     # Set up the MIMEText object to represent the email body
     sender_email =params['email'] 
     sender_password = params['pass']
-    if name == "forgot":
+    if r == "forgot":
         subject =  "Reset Your Password - Your OTP Inside"
         body = f'''Hello
 
@@ -376,63 +398,33 @@ Enter this OTP on the reset page to regain access to your account. This code wil
 
 Stay secure,
 CodeStream Team'''
-    elif name == "apply":
-        subject = "Confirmation of Internship Application & Next Steps"
-        body = f'''Hello ,
-
-Congratulations on taking the first step towards an enriching learning experience with our internship program at CodeStream!
-
-
-We're excited to inform you that your application for the internship has been successfully received. Your dedication to growth and learning aligns perfectly with our values, and we can't wait to have you on board.
-
-Next Steps:
-
-Offer Letter: Following a thorough review of your application, we're pleased to share that you will receive your official offer letter within the next 24 hours.
-
-Payment: Once you receive the offer letter, a link to make the payment for the internship program will be provided. Please note that your seat in the program will be confirmed upon successful payment.
-
-In the meantime, we want to ensure that you're well-prepared to dive into this exciting opportunity. We've prepared a comprehensive tutorial that will guide you through accessing your internship materials on our user-friendly dashboard:
-
-Accessing Your Internship Tutorial:
-
-Log in to your account on our website using your registered credentials.
-Navigate to the "Dashboard" section after logging in.
-Look for the dedicated "Internship Program" tab within the dashboard.
-
-Click on the tab to access your personalized internship materials, resources, and schedule.
-We're committed to providing you with the tools and support you need to make the most of your internship journey. If you have any questions along the way, don't hesitate to reach out to our dedicated support team at WhatsApp NO : +91 78419 82719 .
-
-Thank you once again for choosing CodeStream for your internship experience. We look forward to having you join our dynamic team and grow together!
-
-Best regards,
-CodeStream Team
-'''
-    else:
-        subject = "🌟 Your OTP for Verification 🌟"
+    elif r == "apply":
+        subject = "Congratulations on successfully enrolling for Codestream’s Internship Program"
         body = f'''Dear {name},
 
-Welcome to Codestream! 🚀
+I hope this email finds you well. We are thrilled to welcome you aboard as our newest intern here at CODESTREAM. Your arrival marks the beginning of an exciting journey of learning.
 
-We're thrilled to have you on board as part of our vibrant community. As you take your first steps into the world of seamless coding collaboration, we're here to ensure that your experience is both secure and extraordinary.
 
-To kickstart your journey, we've prepared a special One-Time Password (OTP) exclusively for you:
+During your internship, you'll have the opportunity to learn and grow, contribute your unique skills and perspectives, and gain valuable experience in your applied domain. We believe that your fresh enthusiasm will make a significant impact on your skillset. we recommend you to  share your offer letter on linked in to add up to its value.
 
-🔐 Your OTP for Verification: {otp}
 
-We understand that every coding adventure begins with a single step, and so does your journey with us. This OTP ensures that you're the rightful guardian of your account, helping us maintain the highest level of security for you and your creations.
+As you settle in, please don't hesitate to contact our support team at codestream74@gmail.com or +91 78419 82719. Our team is here to support your every step of the way. All the best for your tasks and learnings. We can't wait to get you started with the learning odyssey! 
 
-But wait, there's more! At Codestream, we believe in adding a personal touch. 🌈 Just like every line of code you craft, your identity matters to us. So, along with your OTP, here's a gentle reminder of your uniqueness:
 
-"Your creativity knows no bounds, {name}! Embrace the infinite possibilities that lie ahead as you embark on your coding odyssey."
+Best regards, 
+CODESTREAM INDIA.
+'''
+    elif r == "otp":
+        subject = "Thank You for Registering on CODESTREAM"
+        body = f'''Dear {name},
 
-Feel free to enter this OTP within the next 2 minutes to start your journey with Codestream. If you need any assistance, our dedicated support team is just a click away.
+We're thrilled to welcome you on CODESTREAM !. We encourage you to have a look at our exciting internship programs specially designed for the rookies to kickstart building up their skill set. Looking forward for you to apply
 
-Thank you for choosing Codestream to be part of your coding story. Get ready to unlock a world of collaboration, innovation, and endless opportunities.
+Your OTP for Registration : {otp}
 
 Happy coding!
-
 Warm regards,
-The Codestream Team 🌟'''
+Codestream'''
     
     
     
@@ -492,10 +484,6 @@ def about():
 def serivce():
     return  render_template("service.html")
 
-
-
-    
-    
 
 @app.route("/register")
 def register():
@@ -563,8 +551,8 @@ def send_email_to_admin(name,upiid,email,college,address,mobile,birthdate,intern
         server.quit()
 
 
-@app.route("/applyform", methods=["GET", "POST"])
-def applyform():
+@app.route("/applyform/<string:domain>", methods=["GET", "POST"])
+def applyform(domain):
     if 'user_id' not in session:
         # User is not logged in, redirect to the login page
         return redirect("/login")
@@ -589,8 +577,7 @@ def applyform():
         
         # Convert the date string to a Python datetime object
         dob = datetime.strptime(birthdate, "%Y-%m-%d")
-        a = "apply"
-        send_email(email,"user_id",a)
+        send_email("apply",email,"user_id",name)
         send_email_to_admin(name,upiid,email,college,address,mobile,birthdate,internship,amount,user_id)
         # intern_details = InternDetails(name = name,email = email,college = college,address = address,mno = mobile,dob = dob,amount=amount,internship= internship,upiid = upiid,user_id=user.sno)
         # db.session.add(intern_details)
@@ -616,7 +603,7 @@ def applyform():
         # Redirect the user to the Razorpay checkout page
         return render_template("/issue.html")
 
-    return render_template("applyform.html")
+    return render_template("applyform.html",domain = domain)
 
 
 
@@ -736,7 +723,7 @@ def adminApplyform():
             internship = request.form["internship"]
             amount = 180
             upiid = request.form["upiid"]
-            user_id = request.form["userid"]
+            user_id = request.form["userID"]
             # Convert the date string to a Python datetime object
             dob = datetime.strptime(birthdate, "%Y-%m-%d")
             a = "apply"

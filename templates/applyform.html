@@ -2,53 +2,93 @@
 {% block body %}
 
 <body>
-<section class="">
-    <form action="/applyform" method="post">
-        <h1>Application form</h1>
-        <label for="name">Name:</label>
-        <!-- Check if the user is logged in and their name exists in the session -->
-        {% if 'name' in session %}
-        <input type="text" name="name" id="name" value="{{ session['name'] }}" required>
-        {% else %}
-        <input type="text" name="name" id="name" required>
-        {% endif %}
+    <section class="">
+        <form action="/applyform/{{domain}}" method="post">
+            <h1>Application form</h1>
+            <label for="name">Name:</label>
+            <!-- Check if the user is logged in and their name exists in the session -->
+            {% if 'name' in session %}
+            <input type="text" name="name" id="name" value="{{ session['name'] }}" required>
+            {% else %}
+            <input type="text" name="name" id="name" required>
+            {% endif %}
 
-        <label for="email">Email</label>
-        <!-- Check if the user is logged in and their email exists in the session -->
-        {% if 'email' in session %}
-        <input type="email" name="email" id="email" value="{{ session['email'] }}" required>
-        {% else %}
-        <input type="email" name="email" id="email" required>
-        {% endif %}
+            <label for="email">Email</label>
+            <!-- Check if the user is logged in and their email exists in the session -->
+            {% if 'email' in session %}
+            <input type="email" name="email" id="email" value="{{ session['email'] }}" required>
+            {% else %}
+            <input type="email" name="email" id="email" required>
+            {% endif %}
 
-        <label for="college">College Name</label>
-        <input type="text" name="college" id="college" required>
+            <label for="college">College Name</label>
+            <input type="text" name="college" id="college" required>
 
-        <label for="address">Address</label>
-        <input type="text" name="address" id="address" required>
+            <label for="address">Address</label>
+            <input type="text" name="address" id="address" required>
 
 
 
-        <label for="birthdate">DOB</label>
-        <input type="date" name="birthdate" id="birthdate" required>
+            <label for="birthdate">DOB</label>
+            <input type="date" name="birthdate" id="birthdate" required>
 
-        <label for="internship">Select Internship:</label>
-        <select name="internship" id="internship" required>
-            <option value="Python">Python</option>
-            <option value="Java">Java</option>
-            <option value="C">C</option>
-            <option value="C++">Cpp</option>
-            <option value="blockchain">Blockchain</option>
-            <option value="ai">AIandChatGpt</option>
-            <option value="webd">WebD</option>
-        </select>
-        <label for="upiid">UPI ID</label>
-        <input placeholder="UPI ID" type="text" name="upiid" id="birthdate" required>
-        <label for="mobile">Mobile Number</label>
-        <input type="text" name="mobile" id="mobile" required><p> <small> "Kindly take note: We regret to inform you that we are currently experiencing an issue with our payment gateway, which is preventing us from processing direct payments. To facilitate your payment, we kindly request you to provide your UPI ID. This will enable us to send you a payment request promptly. If you have any questions or concerns, please don't hesitate to reach out to us on WhatsApp at +91 78419 82719. We truly appreciate your understanding and patience as we work to resolve this matter. Thank you for your cooperation."</small></p>
+            <label for="internship">Select Internship:</label>
+            <select name="internship" id="internship" required>
+                <option value="" selected="selected" hidden="hidden">Select Here</option>
 
-        <button type="submit">Submit</button>
-    </form>
-</section>
+                {% if domain == "Python" %}
+                <option value="Python" selected>Python</option>
+                {% else %}
+                <option value="Python">Python</option>
+                {% endif %}
+
+                {% if domain == "Java" %}
+                <option value="Java" selected>Java</option>
+                {% else %}
+                <option value="Java">Java</option>
+                {% endif %}
+
+                {% if domain == "C" %}
+                <option value="C" selected>C</option>
+                {% else %}
+                <option value="C">C</option>
+                {% endif %}
+                {% if domain == "Cpp" %}
+                <option value="C++" selected>Cpp</option>
+                {% else %}
+                <option value="C++">Cpp</option>
+                {% endif %}
+                {% if domain == "Blockchain" %}
+                <option value="blockchain" selected>Blockchain</option>
+                {% else %}
+                <option value="blockchain">Blockchain</option>
+                {% endif %}
+                {% if domain == "AI" %}
+                <option value="ai" selected>AIandChatGpt</option>
+                {% else %}
+                <option value="ai">AIandChatGpt</option>
+                {% endif %}
+                {% if domain == "WebD" %}
+                <option value="webd" selected>WebD</option>
+                {% else %}
+                <option value="webd">WebD</option>
+                {% endif %}
+                
+
+            </select>
+            <label for="upiid">UPI ID</label>
+            <input placeholder="UPI ID" type="text" name="upiid" id="birthdate" required>
+            <label for="mobile">Mobile Number</label>
+            <input type="text" name="mobile" id="mobile" required>
+            <p> <small> "Kindly take note: We regret to inform you that we are currently experiencing an issue with our
+                    payment gateway, which is preventing us from processing direct payments. To facilitate your payment,
+                    we kindly request you to provide your UPI ID. This will enable us to send you a payment request
+                    promptly. If you have any questions or concerns, please don't hesitate to reach out to us on
+                    WhatsApp at +91 78419 82719. We truly appreciate your understanding and patience as we work to
+                    resolve this matter. Thank you for your cooperation."</small></p>
+
+            <button type="submit">Submit</button>
+        </form>
+    </section>
 </body>
 {% endblock body %}
