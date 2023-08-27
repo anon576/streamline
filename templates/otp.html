@@ -13,22 +13,56 @@
     <form action="/emailVerification" method="post" class='forgetpass' style="margin: 0; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
         <h1>Verify OTP</h1>
         <input id="f" type="number" name='otp' placeholder='Enter OTP'/>
-        <!-- <input type="password" name='password' value={password} placeholder='Enter new password'
-            onChange={handleChangePassword} /> -->
-        <!-- <div class='button' onClick={handleSubmit}>Submit</div>
-        <div id="alert" class="alert">{alertMessage}</div>
-        <div class="loader" id='loader'><img src="../images/loader.gif" alt="" /></div> -->
         <button type="submit">submit</button>
+
+        <div id="alert" class="alert">
+            {{ error_message }}
+        </div>
+
+        <div class="loader" id="loader">
+            <img src="../static/images/loader.gif" alt="" />
+        </div>
     </form>
     <script>
-        a = {{pas}}
-        if(a == 5){
-            let a = document.getElementById("f");
-        console.log("yes");
-        let errorMessage = document.createElement("p");
-        errorMessage.textContent = "Invalid OTP";
-        errorMessage.style.color = "red";
-        a.insertAdjacentElement("afterend", errorMessage);
+        let a = {{ pas }};
+        if (a === 5) {
+            let errorMessage = "";
+            if (a === 5 || a === 6) {
+                errorMessage = "Invalid OTP";
+            } else if (a === 6){
+                errorMessage = "Successfully register";
+            }
+
+            let alertElement = document.getElementById("alert");
+            alertElement.textContent = errorMessage;
+            alertElement.classList.add("visible");
+
+            setTimeout(function () {
+                alertElement.classList.remove("visible");
+            }, 2500); // Adjust the time as needed
+
+
+
+            function handleLogin() {
+            let emailInput = document.querySelector('input[name="otp"]');
+            // let passwordInput = document.querySelector('input[name="password"]');
+            let alertElement = document.getElementById("alert");
+            let loaderElement = document.getElementById("loader");
+
+            let emailValue = emailInput.value.trim();
+            // let passwordValue = passwordInput.value.trim();
+
+            if (emailValue === "") {
+                let errorMessage = "Please enter OTP";
+                alertElement.textContent = errorMessage;
+                alertElement.classList.add("visible");
+                setTimeout(function () {
+                    alertElement.classList.remove("visible");
+                }, 2500);
+            } else {
+                loaderElement.classList.add("viewloader");
+            }
+        }
         }
     </script>
 </body>

@@ -20,25 +20,52 @@
         <div>or</div>
         <!-- <div class="button" onClick={() => navigate("/login")}>Login</div> -->
         <a href="/login" class="button">Login</a>
-        <div id='alert' class="alert">{alertMessage}</div>
-        <div class="loader" id='loader'><img src="../images/loader.gif" alt="" /></div>
+        <div id="alert" class="alert">
+            {{ error_message }}
+        </div>
+
+        <div class="loader" id="loader">
+            <img src="../static/images/loader.gif" alt="" />
+        </div>
     </form>
     <script>
-         let a = {{pas}}
-        if(a == 3){
-            let a = document.getElementById("f");
-        console.log("yes");
-        let errorMessage = document.createElement("p");
-        errorMessage.textContent = "Email is already registered";
-        errorMessage.style.color = "red";
-        a.insertAdjacentElement("afterend", errorMessage);
-        }else if(a == 4){
-            let a = document.getElementById("f");
-        console.log("yes");
-        let errorMessage = document.createElement("p");
-        errorMessage.textContent = "Password does not match";
-        errorMessage.style.color = "red";
-        a.insertAdjacentElement("afterend", errorMessage);
+        let a = {{ pas }};
+        if (a === 3 || a === 4) {
+            let errorMessage = "";
+            if (a === 3) {
+                errorMessage = "Email is already registered";
+            } else if (a === 4) {
+                errorMessage = "Password does not match";
+            }
+
+            let alertElement = document.getElementById("alert");
+            alertElement.textContent = errorMessage;
+            alertElement.classList.add("visible");
+
+            setTimeout(function () {
+                alertElement.classList.remove("visible");
+            }, 2500); // Adjust the time as needed
+        }
+
+        function handleLogin() {
+            let emailInput = document.querySelector('input[name="email"]');
+            // let passwordInput = document.querySelector('input[name="password"]');
+            let alertElement = document.getElementById("alert");
+            let loaderElement = document.getElementById("loader");
+
+            let emailValue = emailInput.value.trim();
+            // let passwordValue = passwordInput.value.trim();
+
+            if (emailValue === "") {
+                let errorMessage = "All inputs are required.";
+                alertElement.textContent = errorMessage;
+                alertElement.classList.add("visible");
+                setTimeout(function () {
+                    alertElement.classList.remove("visible");
+                }, 2500);
+            } else {
+                loaderElement.classList.add("viewloader");
+            }
         }
     </script>
 </body>

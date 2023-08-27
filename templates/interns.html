@@ -29,7 +29,7 @@
 
             <div class="dark">
                 <!-- <i class="fa fa-circle-half"></i> -->
-                <i class="fa fa-adjust" onclick="myFunction()"></i>
+                <i class="fa fa-adjust" onclick="toggleDarkMode()"></i>
             </div>
         </div>
     </div>
@@ -39,22 +39,43 @@
 
 
     <script>
-       function myFunction() {
+        // Check if the user's preference is stored in localStorage
+        var userPreference = localStorage.getItem("darkMode");
+
+        // If userPreference is not null, apply the stored preference
+        if (userPreference === "dark") {
             var element = document.getElementById("intern_pages");
             var backGround = document.getElementById("intern");
-            var codeBackground = document.getElementById("code");
+            var codeBackground = document.getElementsByClassName("code");
 
-            if(codeBackground){
-                codeBackground.classList.toggle("code-dark")
-                backGround.classList.toggle("back")
-                element.classList.toggle("dark-mode")
-            }
-            else{
-                backGround.classList.toggle("back")
-                element.classList.toggle("dark-mode")
+            for (var i = 0; i < codeBackground.length; i++) {
+                codeBackground[i].classList.add("code-dark");
             }
 
+            backGround.classList.add("back");
+            element.classList.add("dark-mode");
         }
+
+        function toggleDarkMode() {
+            var element = document.getElementById("intern_pages");
+            var backGround = document.getElementById("intern");
+            var codeBackground = document.getElementsByClassName("code");
+
+            for (var i = 0; i < codeBackground.length; i++) {
+                codeBackground[i].classList.toggle("code-dark");
+            }
+
+            backGround.classList.toggle("back");
+            element.classList.toggle("dark-mode");
+
+
+            if (element.classList.contains("dark-mode")) {
+                localStorage.setItem("darkMode", "dark");
+            } else {
+                localStorage.setItem("darkMode", "light");
+            }
+        }
+
     </script>
 </body>
 

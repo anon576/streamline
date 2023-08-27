@@ -3,7 +3,6 @@
     left: 0;
     box-sizing: border-box;
     text-decoration: none;
-    list-style: none;
     scroll-behavior: smooth;
 }
 
@@ -460,8 +459,9 @@ h4 {
 
 .alert {
     position: fixed;
-    width: 370px;
+    width: 23rem;
     top: 0;
+    margin-left: 1rem;
     z-index: -2;
     text-align: center;
     border: 1px solid rgba(0, 0, 0, 0.2);
@@ -470,7 +470,7 @@ h4 {
     background: #fff;
     color: #f65656;
     box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.5);
-    transition: all 0.2s ease-in-out;
+    transition: all 0.3s ease-in-out;
     opacity: 0;
 }
 
@@ -581,22 +581,6 @@ h4 {
     opacity: .8;
 }
 
-.alert {
-    position: fixed;
-    width: 370px;
-    top: 0;
-    z-index: 10;
-    text-align: center;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 0.25rem;
-    padding: 2rem;
-    background: #fff;
-    color: #f65656;
-    box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.5);
-    transition: all 0.2s ease-in-out;
-    /* opacity: 0; */
-}
-
 .visible {
     transform: translateY(-6rem);
     opacity: 1;
@@ -621,10 +605,6 @@ h4 {
 @media(max-width:450px) {
     .login {
         width: 80vw;
-    }
-
-    .alert {
-        width: 92%;
     }
 }
 
@@ -918,6 +898,8 @@ form select{
     border: 2px dashed black;
     border-radius: 4px;
     background-color: whitesmoke;
+    min-height: 100vh;
+    list-style: disc;
 }
 
 .dark-mode {
@@ -991,14 +973,18 @@ pre {
     justify-content: center;
 }
 
-.intern button{
-    padding: .5rem 2rem;
+.intern button {
+    padding: 0.5rem 2rem;
     font-size: 1rem;
-    background: #FF6B35;
+    background: #297373;
     border-radius: 4px;
     position: relative;
-    margin: 1.5rem 0;
+    margin: 0rem 0;
     cursor: pointer;
+}
+
+.intern button:hover{
+    opacity: .8;
 }
 
 .intern .dark{
@@ -1034,6 +1020,70 @@ pre {
     }
 
 }
+
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<intern_firstpage>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+.intern_pages details {
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+
+.intern_pages summary {
+    margin: 1.5rem auto;
+    width: 80%;
+    background-color: #E1DD8F;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 5px;
+    transition: all 0.3s;
+    color: black;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.intern_pages summary:hover {
+    box-shadow: 1px 1px 5px rgb(188, 187, 187);
+    opacity: .8;
+}
+
+.intern_pages .dropdown-content {
+    margin: auto;
+    width: 80%;
+}
+
+.intern_pages ul a {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 1rem;
+    border-radius: 5px;
+    margin: 2px 0px;
+    text-align: center;
+    background-color: #E0777D;
+}
+
+.intern_pages ul a:hover {
+    box-shadow: 1px 1px 5px rgb(188, 187, 187);
+    opacity: .8;
+
+}
+
+.intern_pages a {
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: black;
+    font-weight: 500;
+}
+
+@media(max-width:800px) {
+    .intern_pages .dropdown-content {
+        width: 100%;
+    }
+
+    .intern_pages summary {
+        width: 100%;
+    }
+}
+
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<admin>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 .admin{
     width: 80%;
