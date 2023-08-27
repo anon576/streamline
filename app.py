@@ -7,13 +7,8 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import json
 import os
-from markupsafe import Markup
+import ast
 
-
-
-
-accessCode = 'AVPJ99KH38BD72JPDB' 	
-workingKey = 'C5C1E48A35680031DD5E912BAFAC5498'
 
 localServer = True
 with open("templates/config.json",'r') as o:
@@ -52,6 +47,7 @@ class RegUsers(db.Model):
     password = db.Column(db.String(50), nullable=False)
     fpass = db.Column(db.String(50), nullable=False)
     date = db.Column(db.DateTime, default=datetime.utcnow)
+    userprogress = db.Column(db.String(100),nullable = True)
     # Add a one-to-many relationship to the InternDetails model
     internships = db.relationship('InternDetails', backref='user', lazy=True)
 
@@ -73,6 +69,7 @@ class InternDetails(db.Model):
     internship = db.Column(db.String(50), nullable=False)
     amount = db.Column(db.Integer,nullable = False)
     upiid = db.Column(db.String(50), nullable=False)
+    
     # Add a foreign key to the RegUsers model
     user_id = db.Column(db.Integer, db.ForeignKey('reg_users.sno'), nullable=False)
 
@@ -162,12 +159,22 @@ def delateData(model,sno):
 
 @app.route("/internship/<string:model>/<int:sno>")
 def internship(model, sno):
-    m = Idata.query.filter_by(domain=model, day=sno).first()
-    
-    if m is None or not m.content:
-        return redirect("/dashboard")  # Redirect to dashboard.html
-    content = Markup(m.content)
-    return render_template("interns.html", m=m,content = content)
+    if 'user_id' in session:
+        m = Idata.query.filter_by(domain=model, day=sno).first()
+        user = RegUsers.query.get(session['user_id'])
+        up = user.userprogress
+        up  = ast.literal_eval(up)
+        up[model] = sno
+        user.userprogress = str(up)
+        db.session.add(user)
+        db.session.commit()
+        if m is None or not m.content:
+            return redirect("/dashboard")  # Redirect to dashboard.html
+        return render_template("interns.html", m=m)
+    else:
+        # User is not logged in, redirect to the login page
+        return redirect("/login")
+
 
 
 
@@ -259,7 +266,7 @@ def verification():
 
     if email and otp and submitted_otp == otp:
         # If OTP matches, add the user to the database
-        user = RegUsers(name=session.get("name"), email=session.get("email"), password=session.get("password"), fpass=session.get("fpass"))
+        user = RegUsers(name=session.get("name"), email=session.get("email"), password=session.get("password"), fpass=session.get("fpass"),userprogress = session.get("userprogress"))
         db.session.add(user)
         db.session.commit()
         return render_template("login.html")
@@ -308,6 +315,15 @@ def signup():
         email = request.form["email"]
         password = request.form["password"]
         fpass = request.form["fpass"]
+        userprogress = str({
+            "Python":0,
+            "C":0,
+            "C++":0,
+            "webd":0,
+            "ai":0,
+            "blockchain":0,
+            "Java":0
+        })
 
         existing_user = RegUsers.query.filter_by(email=email).first()
 
@@ -323,6 +339,7 @@ def signup():
             session["email"] = email
             session["password"] = password
             session["fpass"] = fpass
+            session['userprogress'] = userprogress
             send_email(email, otp,name)
             return render_template("otp.html")
 
@@ -555,14 +572,15 @@ def applyform():
         amount = 180
         upiid = request.form["upiid"]
         user_id=user.sno
+        
         # Convert the date string to a Python datetime object
         dob = datetime.strptime(birthdate, "%Y-%m-%d")
-        a = "apply"
-        send_email(email,"user_id",a)
-        send_email_to_admin(name,upiid,email,college,address,mobile,birthdate,internship,amount,user_id)
-        # intern_details = InternDetails(name = name,email = email,college = college,address = address,mno = mobile,dob = dob,amount=amount,internship= internship,upiid = upiid,user_id=user.sno)
-        # db.session.add(intern_details)
-        # db.session.commit()
+        # a = "apply"
+        # send_email(email,"user_id",a)
+        # send_email_to_admin(name,upiid,email,college,address,mobile,birthdate,internship,amount,user_id)
+        intern_details = InternDetails(name = name,email = email,college = college,address = address,mno = mobile,dob = dob,amount=amount,internship= internship,upiid = upiid,user_id=user.sno)
+        db.session.add(intern_details)
+        db.session.commit()
         
         # Store the form data in the session for later use
         # session['application_data'] = {
@@ -677,13 +695,15 @@ def dashboard():
         user = RegUsers.query.get(session['user_id'])
      
         if user:
-            enrolled_internships = user.internships  # Retrieve the list of enrolled internships
+            enrolled_internships = user.internships
+            up = user.userprogress
+            up  = ast.literal_eval(up) # Retrieve the list of enrolled internships
         else:
             enrolled_internships = []
     else:
         enrolled_internships = []
 
-    return render_template("dashboard.html", enrolled_internships=enrolled_internships)
+    return render_template("dashboard.html", enrolled_internships=enrolled_internships,up = up)
 
 @app.route("/AdminApplyform", methods=["GET", "POST"])
 def adminApplyform():
