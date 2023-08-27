@@ -501,9 +501,23 @@ def serivce():
 def register():
     return  render_template("register.html")
 
-@app.route("/details")
-def details():
-    return  render_template("details.html")
+@app.route("/details/<string:domain>")
+def details(domain):
+    if domain == "Python":
+        return render_template("detailsPython.html")
+    elif domain == "C":
+        return render_template("detailsC.html")
+    elif domain == "Cpp":
+        return render_template("detailsCpp.html")
+    elif domain == "Java":
+        return render_template("detailsJava.html")
+    elif domain == "AI":
+        return render_template("detailsAI.html")
+    elif domain == "Blockchain":
+        return render_template("detailsBlockchain.html")
+    elif domain == "WebD":
+        return render_template("detailsWebD.html")
+
 
 def send_email_to_admin(name,upiid,email,college,address,mobile,birthdate,internship,amount,user_id):
     # Set up the MIMEText object to represent the email body
@@ -575,12 +589,12 @@ def applyform():
         
         # Convert the date string to a Python datetime object
         dob = datetime.strptime(birthdate, "%Y-%m-%d")
-        # a = "apply"
-        # send_email(email,"user_id",a)
-        # send_email_to_admin(name,upiid,email,college,address,mobile,birthdate,internship,amount,user_id)
-        intern_details = InternDetails(name = name,email = email,college = college,address = address,mno = mobile,dob = dob,amount=amount,internship= internship,upiid = upiid,user_id=user.sno)
-        db.session.add(intern_details)
-        db.session.commit()
+        a = "apply"
+        send_email(email,"user_id",a)
+        send_email_to_admin(name,upiid,email,college,address,mobile,birthdate,internship,amount,user_id)
+        # intern_details = InternDetails(name = name,email = email,college = college,address = address,mno = mobile,dob = dob,amount=amount,internship= internship,upiid = upiid,user_id=user.sno)
+        # db.session.add(intern_details)
+        # db.session.commit()
         
         # Store the form data in the session for later use
         # session['application_data'] = {
