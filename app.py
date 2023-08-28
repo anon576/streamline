@@ -577,7 +577,7 @@ def applyform(domain):
         
         # Convert the date string to a Python datetime object
         dob = datetime.strptime(birthdate, "%Y-%m-%d")
-        # send_email("apply",email,"user_id",name)
+        send_email("apply",email,"user_id",name)
         # send_email_to_admin(name,upiid,email,college,address,mobile,birthdate,internship,amount,user_id)
         # intern_details = InternDetails(name = name,email = email,college = college,address = address,mno = mobile,dob = dob,amount=amount,internship= internship,upiid = upiid,user_id=user.sno)
         # db.session.add(intern_details)
