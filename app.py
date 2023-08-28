@@ -577,23 +577,23 @@ def applyform(domain):
         
         # Convert the date string to a Python datetime object
         dob = datetime.strptime(birthdate, "%Y-%m-%d")
-        send_email("apply",email,"user_id",name)
-        send_email_to_admin(name,upiid,email,college,address,mobile,birthdate,internship,amount,user_id)
+        # send_email("apply",email,"user_id",name)
+        # send_email_to_admin(name,upiid,email,college,address,mobile,birthdate,internship,amount,user_id)
         # intern_details = InternDetails(name = name,email = email,college = college,address = address,mno = mobile,dob = dob,amount=amount,internship= internship,upiid = upiid,user_id=user.sno)
         # db.session.add(intern_details)
         # db.session.commit()
         
-        # Store the form data in the session for later use
-        # session['application_data'] = {
-        #     'name': name,
-        #     'email': email,
-        #     'college': college,
-        #     'address': address,
-        #     'mobile': mobile,
-        #     'dob': dob,
-        #     'internship': internship,
-        #     'amount': amount  # Store the amount for later reference
-        # }
+        #Store the form data in the session for later use
+        session['application_data'] = {
+            'name': name,
+            'email': email,
+            'college': college,
+            'address': address,
+            'mobile': mobile,
+            'dob': dob,
+            'internship': internship,
+            'amount': amount  # Store the amount for later reference
+        }
 
         # Create the Razorpay payment order and redirect to checkout page
         # client = razorpay.Client(auth=("rzp_test_Zjom8IGzUOcgy1", "QTCPiD4BPPLsHcVtSN3DsUe4"))
@@ -601,7 +601,7 @@ def applyform(domain):
         # payment = client.order.create(data=data)
 
         # Redirect the user to the Razorpay checkout page
-        return render_template("/issue.html")
+        return redirect("https://cosmofeed.com/vp/64ecbc82656bd0001dbbb054")
 
     return render_template("applyform.html",domain = domain)
 
@@ -610,21 +610,21 @@ def applyform(domain):
 
 
 
-# @app.route("/update_database", methods=["GET"])
-# def update_database():
+@app.route("/paymentsuccess", methods=["GET"])
+def update_database():
     
-#     application_data = session.get('application_data') 
-#     # Create a new InternDetails instance and add it to the database
-#     intern_details = InternDetails(amount=application_data['amount'], name=application_data['name'], email=application_data['email'],college=application_data['college'], address=application_data['address'], mno=application_data['mobile'],
-#         dob=application_data['dob'], internship=application_data['internship'], user_id=session['user_id'])
-#     db.session.add(intern_details)
-#     db.session.commit()
+    application_data = session.get('application_data') 
+    # Create a new InternDetails instance and add it to the database
+    intern_details = InternDetails(amount=application_data['amount'], name=application_data['name'], email=application_data['email'],college=application_data['college'], address=application_data['address'], mno=application_data['mobile'],
+        dob=application_data['dob'], internship=application_data['internship'], user_id=session['user_id'])
+    db.session.add(intern_details)
+    db.session.commit()
        
-#         # Clear the stored application data from the session
-#     session.pop('application_data', None)
+        # Clear the stored application data from the session
+    session.pop('application_data', None)
 
-#         # Return a response indicating success (you can customize the response as needed)
-#     return "Data added to database successfully"
+        # Return a response indicating success (you can customize the response as needed)
+    return render_template("issue.html")
        
     
 
