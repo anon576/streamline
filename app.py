@@ -405,10 +405,10 @@ CodeStream Team'''
 I hope this email finds you well. We are thrilled to welcome you aboard as our newest intern here at CODESTREAM. Your arrival marks the beginning of an exciting journey of learning.
 
 
-During your internship, you'll have the opportunity to learn and grow, contribute your unique skills and perspectives, and gain valuable experience in your applied domain. We believe that your fresh enthusiasm will make a significant impact on your skillset. we recommend you to  share your offer letter on linked in to add up to its value.
+During your internship, you'll have the opportunity to learn and grow, contribute your unique skills and perspectives, and gain valuable experience in your applied domain. We believe that your fresh enthusiasm will make a significant impact on your skillset. we recommend you to  share your offer letter(Will be sent to you in 24 Hours) on linked in to add up to its value.
 
 
-As you settle in, please don't hesitate to contact our support team at codestream74@gmail.com or +91 78419 82719(WhatsApp). Our team is here to support your every step of the way. All the best for your tasks and learnings. We can't wait to get you started with the learning odyssey! 
+As you settle in, please don't hesitate to contact our support team at codestream74@gmail.com or +91 78419 82719. Our team is here to support your every step of the way. All the best for your tasks and learnings. We can't wait to get you started with the learning odyssey! 
 
 
 Best regards, 
@@ -577,7 +577,7 @@ def applyform(domain):
         
         # Convert the date string to a Python datetime object
         dob = datetime.strptime(birthdate, "%Y-%m-%d")
-        send_email("apply",email,"user_id",name)
+        # send_email("apply",email,"user_id",name)
         # send_email_to_admin(name,upiid,email,college,address,mobile,birthdate,internship,amount,user_id)
         # intern_details = InternDetails(name = name,email = email,college = college,address = address,mno = mobile,dob = dob,amount=amount,internship= internship,upiid = upiid,user_id=user.sno)
         # db.session.add(intern_details)
@@ -617,6 +617,9 @@ def update_database():
     # Create a new InternDetails instance and add it to the database
     intern_details = InternDetails(amount=application_data['amount'], name=application_data['name'], email=application_data['email'],college=application_data['college'], address=application_data['address'], mno=application_data['mobile'],
         dob=application_data['dob'], internship=application_data['internship'], user_id=session['user_id'])
+    email=application_data['email']
+    name=application_data['name']
+    send_email("apply",email,"user_id",name)
     db.session.add(intern_details)
     db.session.commit()
        
