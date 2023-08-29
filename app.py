@@ -69,7 +69,6 @@ class InternDetails(db.Model):
     mno = db.Column(db.BigInteger, nullable=False)
     internship = db.Column(db.String(50), nullable=False)
     amount = db.Column(db.Integer,nullable = False)
-    upiid = db.Column(db.String(50), nullable=False)
     
     # Add a foreign key to the RegUsers model
     user_id = db.Column(db.Integer, db.ForeignKey('reg_users.sno'), nullable=False)
@@ -572,8 +571,6 @@ def applyform(domain):
         birthdate = request.form["birthdate"]
         internship = request.form["internship"]
         amount = 180
-        upiid = request.form["upiid"]
-        user_id=user.sno
         
         # Convert the date string to a Python datetime object
         dob = datetime.strptime(birthdate, "%Y-%m-%d")
