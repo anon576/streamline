@@ -916,6 +916,7 @@ form select{
     display: flex;
     flex-direction: row;
     justify-content: center;
+    margin-top: 1rem;
 }
 
 @media(max-width:1000px){
@@ -940,12 +941,31 @@ form select{
 .intern h4{
     font-size: 1.1rem;
     background: #E1DD8F;
-    margin: 0;
+    margin: 10px 0;
     padding: 1.2rem;
     width: 100%;
     border-radius: 5px;
     font-weight: 500;
     overflow-wrap: break-word;
+}
+
+.intern h5{
+    font-size: 1rem;
+    margin: 10px 0 0 0;
+}
+
+.intern h6{
+    margin: 0; 
+    padding: 10px; 
+    font-size: .8rem; 
+    display: inline;
+    position: absolute;
+    left: 15vw;
+}
+@media(max-width:600px){
+    .intern h6{
+        left: 0;
+    }
 }
 
 .intern img {
@@ -1016,9 +1036,13 @@ pre {
 
     .intern h1{
         margin: 0;
-        padding: 1rem 0;
+        padding: 1.5rem 0;
     }
 
+    .intern h2{
+        margin: 0;
+        padding: 1.5rem 0;
+    }
 }
 
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<intern_firstpage>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
