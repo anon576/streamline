@@ -66,7 +66,7 @@ class InternDetails(db.Model):
     college = db.Column(db.String(50), nullable=False)
     date = db.Column(db.DateTime, default=datetime.utcnow)
     dob = db.Column(db.DateTime, nullable=False)
-    mno = db.Column(db.BigInteger, nullable=False)
+    mno = db.Column(db.String(50), nullable=False)
     internship = db.Column(db.String(50), nullable=False)
     amount = db.Column(db.Integer,nullable = False)
     
