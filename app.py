@@ -616,9 +616,10 @@ def update_database():
         dob=application_data['dob'], internship=application_data['internship'], user_id=session['user_id'])
     email=application_data['email']
     name=application_data['name']
-    send_email("apply",email,"user_id",name)
+    
     db.session.add(intern_details)
     db.session.commit()
+    send_email("apply",email,"user_id",name)
        
         # Clear the stored application data from the session
     session.pop('application_data', None)
