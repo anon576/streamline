@@ -24,9 +24,14 @@
 
 
                     <p>Progress : {{(((up[internship.internship]/112)*100)|string)[:1]}} % </p>
-                    <a href="/internship/{{internship.internship}}/{{up[internship.internship]}}">
+                    <!-- <a href="/internship/{{internship.internship}}/{{(up[internship.internship])-1}}">
+                        <button>Continue</button>
+                    </a> -->
+                    <a href="/internship/{{ internship.internship }}/{% if up[internship.internship] == 0 %}0{% else %}{{ up[internship.internship] - 1 }}{% endif %}">
                         <button>Continue</button>
                     </a>
+                    
+                    
                     <!-- Add other details you want to display -->
                 </div>
                 {% endfor %}
