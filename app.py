@@ -171,6 +171,8 @@ def internship(model, sno):
             user.submission = str(s)
             db.session.add(user)
             db.session.commit()
+            if m is None or not m.content:
+                return redirect("/dashboard")
             return redirect(f'/internship/{m.domain}/{m.day}')
         
         up = user.userprogress
