@@ -156,7 +156,9 @@ def delateData(model,sno):
 
 
 
-
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('index.html'), 404
 
 @app.route("/internship/<string:model>/<int:sno>",methods= ['GET','POST'])
 def internship(model, sno):
