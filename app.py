@@ -511,12 +511,12 @@ def details(domain):
         return render_template("detailsWebD.html")
 
 
-def send_email_to_admin(name,upiid,email,college,address,mobile,birthdate,internship,amount,user_id):
+def send_email_to_admin(name,email,college,address,mobile,birthdate,internship,amount):
     # Set up the MIMEText object to represent the email body
     sender_email =params['email'] 
     sender_password = params['pass']
     subject = "New User Applied for Internship"
-    body = f"Name : {name}\n UPI ID : {upiid}\nEmail : {email}\nCollege : {college}\nAddress : {address}\nMobile : {mobile}\nBirthdate : {birthdate}\nInternship : {internship}\nAmount : {amount}\nUserID : {user_id}"
+    body = f"Name : {name}\nEmail : {email}\nCollege : {college}\nAddress : {address}\nMobile : {mobile}\nBirthdate : {birthdate}\nInternship : {internship}\nAmount : {amount}\n"
     message = MIMEMultipart()
     message["From"] = sender_email
     message["To"] = "codestream74@gmail.com"
@@ -580,7 +580,7 @@ def applyform(domain):
         # Convert the date string to a Python datetime object
         dob = datetime.strptime(birthdate, "%Y-%m-%d")
         # send_email("apply",email,"user_id",name)
-        # send_email_to_admin(name,upiid,email,college,address,mobile,birthdate,internship,amount,user_id)
+        send_email_to_admin(name,email,college,address,mobile,birthdate,internship,amount)
         # intern_details = InternDetails(name = name,email = email,college = college,address = address,mno = mobile,dob = dob,amount=amount,internship= internship,upiid = upiid,user_id=user.sno)
         # db.session.add(intern_details)
         # db.session.commit()
