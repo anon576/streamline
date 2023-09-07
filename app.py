@@ -328,6 +328,7 @@ def signup():
     if request.method == "POST":
         name = request.form["name"]
         email = request.form["email"]
+        email = email.lower()
         password = request.form["password"]
         fpass = request.form["fpass"]
         userprogress = str({
