@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/static/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="/static/images/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="/static/prism-light.css" id="theme-style">
     <title>{{m.domain}}</title>
 </head>
 
@@ -38,6 +39,8 @@
 
 
 
+    <script src="/static/prism.js">Prism.highlightAll();</script>
+
     <script>
         // Check if the user's preference is stored in localStorage
         var userPreference = localStorage.getItem("darkMode");
@@ -46,10 +49,12 @@
         if (userPreference === "dark") {
             var element = document.getElementById("intern_pages");
             var backGround = document.getElementById("intern");
-            var codeBackground = document.getElementsByClassName("code");
+            const themeStyle = document.getElementById('theme-style');
 
-            for (var i = 0; i < codeBackground.length; i++) {
-                codeBackground[i].classList.add("code-dark");
+            if (themeStyle.getAttribute('href') === '/static/prism-light.css') {
+                themeStyle.setAttribute('href', '/static/prism-dark.css');
+            } else {
+                themeStyle.setAttribute('href', '/static/prism-light.css');
             }
 
             backGround.classList.add("back");
@@ -59,15 +64,16 @@
         function toggleDarkMode() {
             var element = document.getElementById("intern_pages");
             var backGround = document.getElementById("intern");
-            var codeBackground = document.getElementsByClassName("code");
-
-            for (var i = 0; i < codeBackground.length; i++) {
-                codeBackground[i].classList.toggle("code-dark");
-            }
+            const themeStyle = document.getElementById('theme-style');
 
             backGround.classList.toggle("back");
             element.classList.toggle("dark-mode");
 
+            if (themeStyle.getAttribute('href') === '/static/prism-light.css') {
+                themeStyle.setAttribute('href', '/static/prism-dark.css');
+            } else {
+                themeStyle.setAttribute('href', '/static/prism-light.css');
+            }
 
             if (element.classList.contains("dark-mode")) {
                 localStorage.setItem("darkMode", "dark");
@@ -75,7 +81,7 @@
                 localStorage.setItem("darkMode", "light");
             }
         }
-      
+
         // if ("{{ m.domain }}" === "Python") {
         // var img = document.createElement("img");
         // img.src = '/static/images/blockchain.png';

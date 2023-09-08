@@ -973,12 +973,12 @@ form select{
 }
 
 pre {
-    background-color: rgb(221, 219, 219);
-    color: black;
-    padding: 1rem;
-    border: 1px solid black;
+    /* background-color: rgb(221, 219, 219); */
+    /* color: black; */
+    /* padding: 1rem; */
+    border-radius: 5px;
+    border: 1px solid green;
     overflow-x: scroll;
-/*     max-height: 30rem; */
 }
 
 .code-dark{
