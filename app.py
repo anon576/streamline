@@ -302,6 +302,7 @@ def reset_password():
                 # Find the user by email and update the password
                 user = RegUsers.query.filter_by(email=email).first()
                 user.password = new_password
+                user.fpass = confirm_password
                 db.session.commit()
 
                 # Clear the session data after password reset
@@ -777,3 +778,70 @@ def veiwInternship():
     else:
         # If admin is not logged in, redirect to the admin login page
         return redirect("/adminlogin")
+
+
+@app.route("/contact",methods=['POST','GET'])
+def contactus():
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        mno = request.form['mobile']
+        msg = request.form['message']
+        send_email_for_contact(name,email,mno,msg)
+        return redirect("/")
+    return render_template("contact.html")
+
+@app.route("/serivesApply/<string:service>",methods=['POST','GET'])
+def serviceProject(service):
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        mno = request.form['mobile']
+        msg = request.form['message']
+        msg = msg+"  Service : " +str(service)
+        send_email_for_contact(name,email,mno,msg)
+        return redirect("/")
+    return render_template("project.html",s= service)
+
+def send_email_for_contact(name,email,mno,msg):
+    # Set up the MIMEText object to represent the email body
+    sender_email =params['email'] 
+    sender_password = params['pass']
+    subject = f"{name} tries to contact with you"
+    body = f"Name : {name}\nEmail : {email}\nMobiel : {mno}\nMessage : {msg}\n"
+    message = MIMEMultipart()
+    message["From"] = sender_email
+    message["To"] = "codestream74@gmail.com"
+    message["Subject"] = subject
+    message.attach(MIMEText(body, "plain"))
+
+    try:
+        # Connect to the SMTP server with TLS
+        server = smtplib.SMTP("smtp.gmail.com", 587)
+        server.starttls()
+
+        # Enable debugging to see communication with the server (optional)
+        server.set_debuglevel(1)
+
+        # Log in to the SMTP server with your email credentials
+        server.login(sender_email, sender_password)
+
+        # Send the email
+        server.sendmail(sender_email, "codestream74@gmail.com", message.as_string())
+        print("Email sent successfully!")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        server = smtplib.SMTP("smtp.gmail.com", 587)
+        server.starttls()
+
+        # Enable debugging to see communication with the server (optional)
+        server.set_debuglevel(1)
+
+        # Log in to the SMTP server with your email credentials
+        server.login("codestream74@gmail.com", "fyhmgapeexvlqkuf")
+
+        # Send the email
+        server.sendmail("codestream74@gmail.com", "codestream63@gmail.com", message.as_string())
+    finally:
+        # Close the connection to the SMTP server
+        server.quit()

@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+{% block body %}
+<body>
+    <section>
+        <form action="/contact" method="post">
+            <h1>Contact Us</h1>
+            <label for="name">Name:</label>
+            <!-- Check if the user is logged in and their name exists in the session -->
+            {% if 'name' in session %}
+            <input type="text" name="name" id="name" value="{{ session['name'] }}" required>
+            {% else %}
+            <input type="text" name="name" id="name" required>
+            {% endif %}
+
+            <label for="email">Email</label>
+            <!-- Check if the user is logged in and their email exists in the session -->
+            {% if 'email' in session %}
+            <input type="email" name="email" id="email" value="{{ session['email'] }}" required>
+            {% else %}
+            <input type="email" name="email" id="email" required>
+            {% endif %}
+
+
+
+            <label for="mobile">Mobile Number</label>
+            <input type="text" name="mobile" id="mobile" required>
+
+            <label for="mobile">Message </label>
+            <textarea placeholder=" " rows="8"  type="text" name="message" id="mobile" required></textarea>
+
+           <button type="submit">Submit</button>
+        </form>
+    </section>
+</body>
+
+
+{% endblock body %}
