@@ -23,20 +23,35 @@
             <label for="mobile">Mobile Number</label>
             <input type="text" name="mobile" id="mobile" required>
 
-            <label for="message">Share you project details</label>
+            <label for="ptitle">Project Title</label>
+            <input type="text" name="ptitle" id="mobile" required>
+
+            <label for="message">Project Description (Please provide details about your project, including objectives, requirements, and any specific instructions):</label>
             <textarea rows="10" type="text" name="message" id="college" required></textarea>
 
-            
+            <label for="deadline">Preferred Deadline</label>
+            <input type="text" name="deadline" id="mobile" required>
 
-           
+            <label for="budget">Project Budget</label>
+            <input type="text" name="budget" id="mobile" required>
 
-            
+            <label for="tool">Are there any specific technologies or tools you want us to use for your project?</label>
+            <textarea rows="10" type="text" name="tool" id="college" required></textarea>
 
-            
-            
+            <label for="coq">Any Additional Comments or Questions?</label>
+            <textarea rows="10" type="text" name="coq" id="college" required></textarea>
 
+            <label for="who">How did you hear about our Servicwho</label>
+            <select id="who" name="howYouHeard">
+                <option value="" disabled selected>Select an option</option>
+                <option value="internet">Internet</option>
+                <option value="friend">Friend</option>
+                <option value="advertisement">Advertisement</option>
+            </select>
             <button type="submit">Submit</button>
         </form>
     </section>
+
+
 </body>
 {% endblock body %}
