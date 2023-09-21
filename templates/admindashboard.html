@@ -15,13 +15,15 @@
             <tr>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Date</th>
+                <th>Password</th>
+                <th>Enrolled Internship</th>
             </tr>
             {% for user in users %}
             <tr>
                 <td>{{ user.name }}</td>
                 <td>{{ user.email }}</td>
-                <td>{{ user.date }}</td>
+                <td>{{ user.password }}</td>
+                <td>{{ user.password }}</td>
             </tr>
             {% endfor %}
         </table>
