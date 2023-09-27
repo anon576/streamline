@@ -10,6 +10,19 @@
 </head>
 
 <body>
+
+    <div class="header" style="z-index: 0;">
+        <div class='nav-bar'>
+            <div class="logo">
+                <a href='/'><img src="../static/images/logon.png" alt="" class='logoimage' /></a>
+                <a href='/'>
+                    <h1>CodeStream</h1>
+                </a>
+            </div>
+            <div class="nav-container" style="z-index: 1;"></div>
+        </div>
+    </div>
+
     <form action="/signup" method="post" class='register'>
         <h1>Register</h1>
         <input type="text" name="name" placeholder="Your Name" onChange={handleChange} required></input>
@@ -17,9 +30,10 @@
         <input type="password" name="password" placeholder="Your Password" onChange={handleChange} required></input>
         <input type="password" name="fpass" placeholder="Re-enter Password" onChange={handleChange} required></input>
         <button id="f" class="button">Register</button>
-        <div>or</div>
+        <!-- <div>or</div> -->
         <!-- <div class="button" onClick={() => navigate("/login")}>Login</div> -->
-        <a href="/login" class="button">Login</a>
+        <!-- <a href="/login" class="button">Login</a> -->
+        <div class="reg_link">Already have an account? <a href="/login" id="rej">Login</a></div>
         <div id="alert" class="alert">
             {{ error_message }}
         </div>

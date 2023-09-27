@@ -10,20 +10,30 @@
 </head>
 
 <body>
+    <div class="header" style="z-index: 0;">
+        <div class='nav-bar'>
+            <div class="logo">
+                <a href='/'><img src="../static/images/logon.png" alt="" class='logoimage' /></a>
+                <a href='/'>
+                    <h1>CodeStream</h1>
+                </a>
+            </div>
+            <div class="nav-container" style="z-index: 1;"></div>
+        </div>
+    </div>
+
     <form action="/login" method='post' div class='login'>
         <h1>Login</h1>
         <input type="email" name='email' placeholder='Enter Email' required />
         <input type="password" name='password' placeholder='Enter password' required />
         <button type="submit" id="f" class='button'>Login</button>
+        <a href="/forgot" class="otp">Forget Password?</a>
 
-        <div>or</div>
+        <div class="reg_link">Don't have an account yet? <a href="/register" id="rej">Create One</a></div>
 
-        <a href="/register" id="rej" class='button'>Register</a>
+        <!-- <span>Don't have an account</span><a href="/register" id="rej" style="font-size: 1rem; color: black;">Register</a> -->
         <!-- Display error message if it exists -->
 
-        <a href="/forgot">
-            <div class="otp">Forget Password</div>
-        </a>
 
         <div id="alert" class="alert">
             {{ error_message }}

@@ -462,7 +462,7 @@ h4 {
     width: 23rem;
     top: 0;
     margin-left: 1rem;
-    z-index: -2;
+    /* z-index: -2; */
     text-align: center;
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 0.25rem;
@@ -472,6 +472,7 @@ h4 {
     box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.5);
     transition: all 0.3s ease-in-out;
     opacity: 0;
+    z-index: 10;
 }
 
 .visible {
@@ -479,25 +480,48 @@ h4 {
     opacity: 1;
 }
 
-.otp {
-    /* position: absolute; */
-    right: 0;
-}
-
-.otp {
-    width: 100%;
+.project_alert {
+    position: fixed;
+    width: 23rem;
+    top: 0;
+    margin-left: 1rem;
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0.25rem;
+    padding: 2rem;
+    background: #fff;
     color: #f65656;
-    cursor: pointer;
-    float: right;
+    box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease-in-out;
+    z-index: -2;
+    opacity: 0;
 }
 
-.otp:active {
-    color: #16DB93;
+.project_visible {
+    transform: translateY(20vh);
+    z-index: 10;
+    opacity: 1;
+}
+
+.otp{
+    text-decoration: underline;
+    font-size: 1rem;
+    text-align: end;
+}
+
+.reg_link{
+    font-size: 1.2rem;
+    color: black;
+    font-size: 1rem;
+}
+
+.reg_link a{
+    text-decoration: underline;
 }
 
 @media(max-width:450px) {
     .register {
-        width: 80vw;
+        width: 95vw;
     }
 
     .alert {
@@ -586,25 +610,9 @@ h4 {
     opacity: 1;
 }
 
-.otp {
-    /* position: absolute; */
-    right: 0;
-}
-
-.otp {
-    width: 100%;
-    color: #f65656;
-    cursor: pointer;
-    float: right;
-}
-
-.otp:active {
-    color: #16DB93;
-}
-
 @media(max-width:450px) {
     .login {
-        width: 80vw;
+        width: 95vw;
     }
 }
 
@@ -631,14 +639,6 @@ h4 {
 }
 
 
-
-/* loader */
-
-
-#rej{
-    text-decoration: none;
-    color: white;
-}
 
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<DASHBOARD>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 header h1{

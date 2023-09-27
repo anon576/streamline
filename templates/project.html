@@ -1,5 +1,6 @@
-{% extends 'layout.html' %} 
+{% extends 'layout.html' %}
 {% block body %}
+
 <body>
     <section class="">
         <form action="/serivesApply/{{s}}" method="post">
@@ -26,7 +27,8 @@
             <label for="ptitle">Project Title</label>
             <input type="text" name="ptitle" id="mobile" required>
 
-            <label for="message">Project Description (Please provide details about your project, including objectives, requirements, and any specific instructions):</label>
+            <label for="message">Project Description (Please provide details about your project, including objectives,
+                requirements, and any specific instructions):</label>
             <textarea rows="10" type="text" name="message" id="college" required></textarea>
 
             <label for="deadline">Preferred Deadline</label>
@@ -49,9 +51,31 @@
                 <option value="advertisement">Advertisement</option>
             </select>
             <button type="submit">Submit</button>
+            <div id="project_alert" class="project_alert">
+                {{ error_message }}
+            </div>
         </form>
     </section>
 
+    <script>
+        let a = "{{ pas }}";
+        console.log(a)
+        console.log(typeof a)
+        if (a == 1) {
+            errorMessage = "Thanks for Hiring us we will contact you soon";
+        } 
+        // else {
+        //     errorMessage = "Please try again after some time";
+        // }
+
+        let alertElement = document.getElementById("project_alert");
+        alertElement.textContent = errorMessage;
+        alertElement.classList.add("project_visible");
+
+        setTimeout(function () {
+            alertElement.classList.remove("project_visible");
+        }, 2500);
+    </script>
 
 </body>
 {% endblock body %}
