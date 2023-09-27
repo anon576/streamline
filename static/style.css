@@ -4,6 +4,7 @@
     box-sizing: border-box;
     text-decoration: none;
     scroll-behavior: smooth;
+    /* overflow: hidden; */
 }
 
 html{
@@ -238,6 +239,7 @@ h2::first-letter {
     flex-basis: 0;
     flex-wrap: wrap;
     gap: 2rem;
+    /* overflow: hidden; */
 }
 
 .tranining h3 {
@@ -348,8 +350,10 @@ h2::first-letter {
     /* bottom: 0%; */
     /* position: absolute;
     bottom: 0; */
+    /* width: 100vw; */
     padding: 2rem 0 0 0;
     background: rgb(232, 230, 230);
+    overflow-x: hidden;
 }
 
 .footer-links a{
