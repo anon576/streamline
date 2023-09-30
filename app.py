@@ -517,7 +517,7 @@ def send_email_to_admin(name,email,college,address,mobile,birthdate,internship,a
     sender_email =params['email'] 
     sender_password = params['pass']
     subject = "New User Applied for Internship"
-    body = f"Name : {name}\nEmail : {email}\nCollege : {college}\nAddress : {address}\nMobile : {mobile}\nBirthdate : {birthdate}\nInternship : {internship}\nAmount : {amount}\n"
+    body = f"Name : {name}\nEmail : {email}\nCollege : {college}\nReferral Code : {address}\nMobile : {mobile}\nBirthdate : {birthdate}\nInternship : {internship}\nAmount : {amount}\n"
     message = MIMEMultipart()
     message["From"] = sender_email
     message["To"] = "codestream74@gmail.com"
@@ -575,9 +575,10 @@ def applyform(domain):
         if len(college)>45:
             college = college[:45]
         address = request.form["address"]
+        if address is None:
+            address = "1234"
         if len(address)>45:
             address = address[:45]
-        address = address[:45]
         mobile = request.form["mobile"]
         birthdate = request.form["birthdate"]
         internship = request.form["internship"]
