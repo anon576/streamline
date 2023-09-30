@@ -572,7 +572,12 @@ def applyform(domain):
         name = request.form["name"]
         email = request.form["email"]
         college = request.form["college"]
+        if len(college)>45:
+            college = college[:45]
         address = request.form["address"]
+        if len(address)>45:
+            address = address[:45]
+        address = address[:45]
         mobile = request.form["mobile"]
         birthdate = request.form["birthdate"]
         internship = request.form["internship"]
