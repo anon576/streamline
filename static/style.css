@@ -7,14 +7,15 @@
     /* overflow: hidden; */
 }
 
-html{
+html {
     width: 100%;
     height: 100%;
     margin: 0;
     padding: 0;
     overflow-x: hidden;
 }
-body{
+
+body {
     width: 100%;
     height: 100%;
     margin: 0;
@@ -65,9 +66,9 @@ body{
 }
 
 .nav-links:hover {
-    background-color:  #1877f2;
+    background-color: #1877f2;
     border-radius: 3px;
-    
+
 }
 
 .nav-bar .nav-container {
@@ -356,13 +357,13 @@ h2::first-letter {
     overflow-x: hidden;
 }
 
-.footer-links a{
+.footer-links a {
     color: #1d2129;
     transition: color .2s;
 }
 
-.footer-links a:hover{
-    color:#1877f2;
+.footer-links a:hover {
+    color: #1877f2;
 }
 
 .footer-content {
@@ -426,11 +427,11 @@ h4 {
     margin: 0;
 }
 
-.register button{
+.register button {
     width: 100%;
 }
 
-.register a{
+.register a {
     width: 100%;
 }
 
@@ -507,19 +508,19 @@ h4 {
     opacity: 1;
 }
 
-.otp{
+.otp {
     text-decoration: underline;
     font-size: 1rem;
     text-align: end;
 }
 
-.reg_link{
+.reg_link {
     font-size: 1.2rem;
     color: black;
     font-size: 1rem;
 }
 
-.reg_link a{
+.reg_link a {
     text-decoration: underline;
 }
 
@@ -574,11 +575,11 @@ h4 {
     margin: 0;
 }
 
-.login a{
+.login a {
     width: 100%;
 }
 
-.login button{
+.login button {
     width: 100%;
 }
 
@@ -645,18 +646,18 @@ h4 {
 
 
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<DASHBOARD>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
-header h1{
+header h1 {
     position: relative;
     top: 4rem;
     text-align: center;
 }
 
-.enroled_internship{    
+.enroled_internship {
     margin: 7rem 7rem 5rem 7rem;
     min-height: 40vh;
 }
 
-.internship-cards{
+.internship-cards {
     height: fit-content;
     display: flex;
     justify-content: space-evenly;
@@ -665,24 +666,24 @@ header h1{
     gap: 2rem;
 }
 
-.internship-cards .card{
+.internship-cards .card {
     min-width: 20rem;
 }
 
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<details_page>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
-.internship_detail_page{
+.internship_detail_page {
     width: 80%;
     margin-top: 5rem;
     margin-left: 10%;
-    background-color:#dddfe2;
+    background-color: #dddfe2;
 }
 
-.detail_page{
+.detail_page {
     width: 80%;
     margin-left: 10%;
 }
 
-.detail_page h3{
+.detail_page h3 {
     font-size: 1.5rem;
     margin: 0;
     padding: 0%;
@@ -693,7 +694,7 @@ header h1{
     /* text-align: center; */
 }
 
-.detail_page p{
+.detail_page p {
     font-size: 1.2rem;
     /* width: 50%; */
     /* margin-left: 25%; */
@@ -701,17 +702,17 @@ header h1{
     /* background-color:#1d2129; */
 }
 
-.detail_page li{
+.detail_page li {
     font-size: 1.2rem;
 }
 
-.detail_page button{
+.detail_page button {
     margin-left: 50%;
     transform: translateX(-50%);
 }
 
-@media(max-width:600px){
-    .internship_detail_page{
+@media(max-width:600px) {
+    .internship_detail_page {
         width: 100%;
         margin-left: 0%;
     }
@@ -719,7 +720,7 @@ header h1{
 
 
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<APPLY_FORM>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.. */
-form{
+form {
     display: flex;
     gap: .5rem;
     flex-direction: column;
@@ -727,7 +728,7 @@ form{
     margin-top: 5rem;
     margin-bottom: 1rem;
     font-size: 20px;
-    background-color:#fff;
+    background-color: #fff;
     padding: 10px 30px 10px 30px;
     position: relative;
     top: 50%;
@@ -736,16 +737,16 @@ form{
     box-shadow: 2px 2px 10px rgb(85, 84, 84);
 }
 
-form h1{
+form h1 {
     margin: 0;
     text-align: center;
 }
 
-form label{
+form label {
     margin-top: 10px;
 }
 
-form input{
+form input {
     border: none;
     font-size: 17px;
     padding: 5px 0 5px 10px;
@@ -754,15 +755,15 @@ form input{
     outline: none;
 }
 
-form input:active{
+form input:active {
     border: none;
 }
 
-form input:focus{
+form input:focus {
     outline: none;
 }
 
-form select{
+form select {
     border: none;
     font-size: 17px;
     padding: 5px 0 5px 10px;
@@ -770,25 +771,25 @@ form select{
     border-radius: 5px;
 }
 
-form textarea{
+form textarea {
     max-width: 100%;
 }
 
-@media(max-width:500px){
-    form{
+@media(max-width:500px) {
+    form {
         width: 90%;
     }
 }
 
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<service>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
-.service{
+.service {
     /* width: 80%;
     margin-left: 10%; */
     font-size: 1rem;
-    margin-top: 5rem ; 
+    margin-top: 5rem;
 }
 
-.service h1{
+.service h1 {
     text-align: center;
 }
 
@@ -857,7 +858,7 @@ form textarea{
     padding: 2px 16px;
 }
 
-@media(max-width:1000px){
+@media(max-width:1000px) {
     .clients-card {
         display: flex;
         flex-direction: column;
@@ -876,12 +877,12 @@ form textarea{
 
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<about>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 
-.about{
+.about {
     width: 70%;
     margin: 5rem 15%;
 }
 
-.about h3{
+.about h3 {
     font-size: 1.3rem;
 }
 
@@ -916,20 +917,20 @@ form textarea{
     border: 2px dashed white;
 }
 
-.back{
+.back {
     background-color: black;
 }
 
-.intern_btn{
+.intern_btn {
     display: flex;
     flex-direction: row;
     justify-content: center;
     margin-top: 1rem;
 }
 
-@media(max-width:1000px){
-    .intern_pages{
-        padding:0 2rem;
+@media(max-width:1000px) {
+    .intern_pages {
+        padding: 0 2rem;
     }
 }
 
@@ -938,15 +939,15 @@ form textarea{
     text-align: center;
 }
 
-.intern h2{
+.intern h2 {
     font-size: 1.4rem;
 }
 
-.intern h3{
+.intern h3 {
     font-size: 1rem;
 }
 
-.intern h4{
+.intern h4 {
     font-size: 1.1rem;
     background: #E1DD8F;
     margin: 10px 0;
@@ -957,21 +958,22 @@ form textarea{
     overflow-wrap: break-word;
 }
 
-.intern h5{
+.intern h5 {
     font-size: 1rem;
     margin: 10px 0 0 0;
 }
 
-.intern h6{
-    margin: 0; 
-    padding: 10px; 
-    font-size: .8rem; 
+.intern h6 {
+    margin: 0;
+    padding: 10px;
+    font-size: .8rem;
     display: inline;
     position: absolute;
     left: 15vw;
 }
-@media(max-width:600px){
-    .intern h6{
+
+@media(max-width:600px) {
+    .intern h6 {
         left: 0;
     }
 }
@@ -989,13 +991,13 @@ pre {
     overflow-x: scroll;
 }
 
-.code-dark{
+.code-dark {
     background: #1d2129;
     color: rgb(8, 255, 8);
     border: 1px solid white;
 }
 
-.intern .intern_btn{
+.intern .intern_btn {
     display: flex;
     gap: 1rem;
     justify-content: center;
@@ -1011,11 +1013,11 @@ pre {
     cursor: pointer;
 }
 
-.intern button:hover{
+.intern button:hover {
     opacity: .8;
 }
 
-.intern .dark{
+.intern .dark {
     font-size: 1.3rem;
     position: fixed;
     top: 90vh;
@@ -1023,31 +1025,31 @@ pre {
     cursor: pointer;
 }
 
-@media(max-width:900px){
-    .intern .dark{
+@media(max-width:900px) {
+    .intern .dark {
         top: 90vh;
         left: 80vw;
     }
 }
 
-@media(max-width:600px){
-    .intern_pages{
+@media(max-width:600px) {
+    .intern_pages {
         width: 100%;
         margin-left: 0%;
         border: none;
     }
 
-    .intern .dark{
+    .intern .dark {
         top: 92vh;
         left: 92.6vw;
     }
 
-    .intern h1{
+    .intern h1 {
         margin: 0;
         padding: 1.5rem 0;
     }
 
-    .intern h2{
+    .intern h2 {
         margin: 0;
         padding: 1.5rem 0;
     }
@@ -1117,7 +1119,7 @@ pre {
 }
 
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<admin>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
-.admin{
+.admin {
     position: absolute;
     top: 10vh;
     left: 250px;
@@ -1125,17 +1127,17 @@ pre {
     /* margin-left: 10%; */
 }
 
-.admin-search input{
+.admin-search input {
     padding: .5rem;
 }
 
-.search-btn{
+.search-btn {
     font-size: 1rem;
     border-radius: 2px;
     /* margin-left: 5px; */
 }
 
-.admin-nav-bar{
+.admin-nav-bar {
     position: fixed;
     top: 70px;
     bottom: 0;
@@ -1149,11 +1151,11 @@ pre {
     left: -220px;
 }
 
-#open-nav:checked ~ .admin-nav-bar{
+#open-nav:checked~.admin-nav-bar {
     left: 0;
 }
 
-.admin-nav-bar ul{
+.admin-nav-bar ul {
     display: flex;
     flex-direction: column;
     font-size: 1.2rem;
@@ -1164,40 +1166,40 @@ pre {
     gap: 1rem;
 }
 
-.admin-nav-bar a{
+.admin-nav-bar a {
     padding: 5px;
     width: 100%;
     transition: all .3s;
     cursor: pointer;
 }
 
-.admin-nav-bar a:hover{
-    background-color:#1877f2;
+.admin-nav-bar a:hover {
+    background-color: #1877f2;
 }
 
-.admin-nav-bar ul a{
+.admin-nav-bar ul a {
     font-size: 1.2rem;
-    color:#dddfe2;
+    color: #dddfe2;
 }
 
-#open-nav{
+#open-nav {
     display: none;
 }
 
-.admin-nav-bar .open-nav{
+.admin-nav-bar .open-nav {
     width: 100%;
     position: absolute;
     text-align: right;
     cursor: pointer;
 }
 
-.admin-nav-bar .fa{
+.admin-nav-bar .fa {
     text-align: right;
     font-size: 1.6rem;
     color: #1877f2;
 }
 
-.select-internship{
+.select-internship {
     position: relative;
     top: auto;
     width: 250px;
@@ -1207,20 +1209,20 @@ pre {
     background-color: rgb(38, 38, 38);
 }
 
-.select-internship select{
+.select-internship select {
     border-radius: 0;
 }
 
-table{
+table {
     align-items: center;
     width: 80%;
 }
 
-table tr{
+table tr {
     border: 1px solid black;
 }
 
-.admin_btn{
+.admin_btn {
     /* align-items: center; */
     padding: 0;
     display: flex;
@@ -1230,16 +1232,17 @@ table tr{
     margin-top: 1rem;
 }
 
-table th{
+table th {
     text-align: left;
 }
 
-@media(max-width:600px){
-    .admin{
+@media(max-width:600px) {
+    .admin {
         width: 100%;
         margin: 0%;
     }
-    table{
+
+    table {
         align-items: center;
         width: 100%;
     }
@@ -1247,54 +1250,104 @@ table th{
 
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<create_data>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 
-.create_data{
+.create_data {
     width: 50%;
     margin-left: 0%;
 }
 
-.create_data textarea{
+.create_data textarea {
     padding: 10px;
     height: 10rem;
     overflow: scroll;
 }
 
-@media(max-width:800px){
-    .create_data{
+@media(max-width:800px) {
+    .create_data {
         width: 70%;
         margin-left: 0%;
     }
 
-    .create_data h1{
+    .create_data h1 {
         font-size: 1.5rem;
     }
 }
 
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<Scroll-bar>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
-  
-  /* Works on Chrome, Edge, and Safari */
-  *::-webkit-scrollbar {
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
     width: 10px;
-  }
-  
-  *::-webkit-scrollbar-track {
+}
+
+*::-webkit-scrollbar-track {
     background: transparent;
-  }
-  
-  *::-webkit-scrollbar-thumb {
+}
+
+*::-webkit-scrollbar-thumb {
     background-color: rgb(122, 122, 122);
     border-radius: 10px;
     /* border: 3px solid orange; */
-  }
+}
 
-  
+
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<update page>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 
-.update_page{
+.update_page {
     width: 70%;
 }
 
-@media(max-width:600px){
-    .update_page{
+@media(max-width:600px) {
+    .update_page {
         width: 100%;
+    }
+}
+
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<intern_verification>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+.intern-verification-container {
+    width: 70%;
+    margin: 5rem auto;
+}
+
+.intern-details {
+    width: 70%;
+    margin: auto;
+    padding: 1rem;
+    box-shadow: 0 0 15px 1px grey;
+    font-size: 1.1rem;
+}
+
+.intern-details .intern-image {
+    width: 50px;
+    height: 50px;
+    background-color: #1877f2;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+@media(max-width:800px) {
+    .intern-details {
+        width: 90%;
+    }
+}
+
+@media(max-width:550px) {
+    .intern-details {
+        width: 100%;
+    }
+}
+
+@media(max-width:500px) {
+
+    .intern-verification-container {
+        width: 90%;
+        margin: 5rem auto;
+    }
+
+    .intern-details {
+        width: 100% ;
     }
 }

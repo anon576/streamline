@@ -1,20 +1,35 @@
-
 {% extends 'layout.html' %}
 {% block body %}
-<div class="container">
-    <h1>Intern Details</h1>
-    <div class="details">
-        <p><strong>Intern ID:</strong> CDS{{ intern.user_id }}</p>
-        <p><strong>Name:</strong> {{ intern.name }}</p>
+<div class="intern-verification-container">
+    <h2>Personal Details</h2>
+    <div class="intern-details">
+        <h1 class="intern-image">{{ intern.name[0].upper() }}</h1>
+        <!-- <p><strong>Intern ID:</strong> CDS{{ intern.user_id }}</p> -->
+        <p><strong>Name:</strong> {{ intern.name.capitalize() }}</p>
         <p><strong>Email:</strong> {{ intern.email }}</p>
         <p><strong>Address:</strong> {{ intern.address }}</p>
         <p><strong>College:</strong> {{ intern.college }}</p>
         <p><strong>Date of Birth:</strong> {{ (intern.dob|string)[0:11] }}</p>
+        <!-- <p><strong>Mobile Number:</strong> {{ intern.mno }}</p> -->
+        <!-- <p><strong>Domain:</strong> {{ intern.internship }}</p> -->
+        <!-- <p><strong>Start Date:</strong> {{ (intern.date|string)[0:11] }}</p> -->
+        <!-- <p><strong>End Date:</strong> {{ (enddate|string)[0:11] }}</p> -->
+    </div>
+
+    <h2>Intern Details</h2>
+    <div class="intern-details">
+        <!-- <h1 class="intern-image">C</h1> -->
+        <p><strong>Intern ID:</strong> CDS{{ intern.user_id }}</p>
+        <!-- <p><strong>Name:</strong> {{ intern.name }}</p> -->
+        <!-- <p><strong>Email:</strong> {{ intern.email }}</p> -->
+        <!-- <p><strong>Address:</strong> {{ intern.address }}</p> -->
+        <!-- <p><strong>College:</strong> {{ intern.college }}</p> -->
+        <!-- <p><strong>Date of Birth:</strong> {{ (intern.dob|string)[0:11] }}</p> -->
         <p><strong>Mobile Number:</strong> {{ intern.mno }}</p>
         <p><strong>Domain:</strong> {{ intern.internship }}</p>
         <p><strong>Start Date:</strong> {{ (intern.date|string)[0:11] }}</p>
         <p><strong>End Date:</strong> {{ (enddate|string)[0:11] }}</p>
-
+        <p><strong>Internship Status:</strong> Complete ✅</p>
     </div>
 </div>
-    {% endblock body  %}
+{% endblock body %}
