@@ -10,7 +10,7 @@
 </head>
 <body>
     <div>
-    <form method="POST" action="/updateData/{{m.domain}}/{{m.day}}">
+    <form method="POST" action="/updateData/{{m.domain}}/{{m.day}}" class="update_page">
         <label for="domain">Domain:</label>
         <select name="domain" id="domain" ><option value="Python">Python</option>
             <option value="Java">Java</option>
@@ -28,7 +28,7 @@
 
         <!-- <input type="text" name="content" id=""> -->
        
-        <input value="{{m.content}}" type="text" id="c" name = "content">
+        <textarea id="c" name = "content" rows="10">{{m.content}}</textarea>
 
         <!-- Use the "content" input multiple times to allow adding multiple pages -->
        

@@ -4,13 +4,55 @@
 
 <head>
     <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../static/style.css">
     <link rel="icon" href="../static/images/logo.png" type="image/x-icon">
 </head>
 
 <body>
+
+    <div class="header" style="z-index: 3;">
+        <div class='nav-bar' style="margin: 0; min-width:90%;">
+            <div class="logo">
+                <a href='/'><img src="../static/images/logon.png" alt="" class='logoimage' /></a>
+                <a href='/'>
+                    <h1>CodeStream</h1>
+                </a>
+            </div>
+            <h1 style="padding: 0;">Admin Dashboard</h1>
+            <!-- <div class="nav-container" style="z-index: 1;"></div> -->
+            <div class="admin-search" style="z-index: 1;"><input type="text"><button class="search-btn">Search</button></div>
+        </div>
+    </div>
+
+    <div class="admin-nav-bar">
+        <input type="checkbox" id="open-nav">
+        <label for="open-nav" class="open-nav"><i class="fa fa-exchange"></i></label>
+       <ul>
+        <a href="#">Home</a>
+        <a href="/createData">create data</a>
+        <a href="/AdminApplyform">Add Intern Data</a> 
+        <a href="/adminlogout">Logout</a>
+       </ul>
+
+       <form action="/veiwIntership", method="post" class="select-internship">
+        <label for="internship">Select Internship:</label>
+        <select name="domain" id="internship" required>
+            <option value="Python">Python</option>
+            <option value="Java">Java</option>
+            <option value="C">C</option>
+            <option value="C++">Cpp</option>
+            <option value="blockchain">Blockchain</option>
+            <option value="ai">AIandChatGpt</option>
+            <option value="webd">WebD</option>
+        </select><br>
+        <button type="submit" class="search-btn">Submit</button>
+    </form>
+
+    <ul><a href="#">Logout</a></ul>
+    </div>
+
     <div class="admin">
-        <h2>Admin Dashboard</h2>
         <table align="center">
             <tr>
                 <th>Name</th>
@@ -34,19 +76,6 @@
             <a href="/adminlogout"><button>Logout</button></a>
         </div>
     </div>
-    <form action="/veiwIntership", method="post">
-        <label for="internship">Select Internship:</label>
-        <select name="domain" id="internship" required>
-            <option value="Python">Python</option>
-            <option value="Java">Java</option>
-            <option value="C">C</option>
-            <option value="C++">Cpp</option>
-            <option value="blockchain">Blockchain</option>
-            <option value="ai">AIandChatGpt</option>
-            <option value="webd">WebD</option>
-        </select><br>
-        <button type="submit">Submit</button>
-    </form>
 </body>
 
 </html>

@@ -770,9 +770,13 @@ form select{
     border-radius: 5px;
 }
 
+form textarea{
+    max-width: 100%;
+}
+
 @media(max-width:500px){
     form{
-        width: 20rem;
+        width: 90%;
     }
 }
 
@@ -1114,13 +1118,106 @@ pre {
 
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<admin>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 .admin{
+    position: absolute;
+    top: 10vh;
+    left: 250px;
     width: 80%;
-    margin-left: 10%;
+    /* margin-left: 10%; */
+}
+
+.admin-search input{
+    padding: .5rem;
+}
+
+.search-btn{
+    font-size: 1rem;
+    border-radius: 2px;
+    /* margin-left: 5px; */
+}
+
+.admin-nav-bar{
+    position: fixed;
+    top: 70px;
+    bottom: 0;
+    background-color: #303131;
+    width: 250px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 3;
+    left: -220px;
+}
+
+#open-nav:checked ~ .admin-nav-bar{
+    left: 0;
+}
+
+.admin-nav-bar ul{
+    display: flex;
+    flex-direction: column;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    list-style: none;
+    margin: 0%;
+    padding: 0;
+    gap: 1rem;
+}
+
+.admin-nav-bar a{
+    padding: 5px;
+    width: 100%;
+    transition: all .3s;
+    cursor: pointer;
+}
+
+.admin-nav-bar a:hover{
+    background-color:#1877f2;
+}
+
+.admin-nav-bar ul a{
+    font-size: 1.2rem;
+    color:#dddfe2;
+}
+
+#open-nav{
+    display: none;
+}
+
+.admin-nav-bar .open-nav{
+    width: 100%;
+    position: absolute;
+    text-align: right;
+    cursor: pointer;
+}
+
+.admin-nav-bar .fa{
+    text-align: right;
+    font-size: 1.6rem;
+    color: #1877f2;
+}
+
+.select-internship{
+    position: relative;
+    top: auto;
+    width: 250px;
+    margin: 0;
+    padding: 10px;
+    color: #dddfe2;
+    background-color: rgb(38, 38, 38);
+}
+
+.select-internship select{
+    border-radius: 0;
 }
 
 table{
     align-items: center;
     width: 80%;
+}
+
+table tr{
+    border: 1px solid black;
 }
 
 .admin_btn{
@@ -1188,3 +1285,16 @@ table th{
     border-radius: 10px;
     /* border: 3px solid orange; */
   }
+
+  
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<update page>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+
+.update_page{
+    width: 70%;
+}
+
+@media(max-width:600px){
+    .update_page{
+        width: 100%;
+    }
+}
