@@ -26,7 +26,7 @@
         <!-- <p><strong>College:</strong> {{ intern.college }}</p> -->
         <!-- <p><strong>Date of Birth:</strong> {{ (intern.dob|string)[0:11] }}</p> -->
         <p><strong>Mobile Number:</strong> {{ intern.mno }}</p>
-        <p><strong>Domain:</strong> {{ intern.internship }}</p>
+        <p ><strong >Domain:</strong> {{ (intern.internship).capitalize() }}</p>
         <p><strong>Start Date:</strong> {{ (intern.date|string)[0:11] }}</p>
         <p><strong>End Date:</strong> {{ (enddate|string)[0:11] }}</p>
         <p><strong>Internship Status:</strong> Complete ✅</p>
