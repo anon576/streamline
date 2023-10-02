@@ -4,7 +4,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import random
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
+from datetime import datetime, timedelta
 import json
 import os
 import ast
@@ -512,12 +512,12 @@ def details(domain):
         return render_template("detailsWebD.html")
 
 
-def send_email_to_admin(name,email,college,address,mobile,birthdate,internship,amount):
+def send_email_to_admin(name,email,college,address,mobile,birthdate,internship,amount,ref):
     # Set up the MIMEText object to represent the email body
     sender_email =params['email'] 
     sender_password = params['pass']
     subject = "New User Applied for Internship"
-    body = f"Name : {name}\nEmail : {email}\nCollege : {college}\nReferral Code : {address}\nMobile : {mobile}\nBirthdate : {birthdate}\nInternship : {internship}\nAmount : {amount}\n"
+    body = f"Name : {name}\nEmail : {email}\nCollege : {college}\nAddress : {address}\nMobile : {mobile}\nBirthdate : {birthdate}\nInternship : {internship}\nAmount : {amount}\nReferral : {ref}"
     message = MIMEMultipart()
     message["From"] = sender_email
     message["To"] = "codestream74@gmail.com"
@@ -583,11 +583,12 @@ def applyform(domain):
         birthdate = request.form["birthdate"]
         internship = request.form["internship"]
         amount = 180
+        ref = request.form['referral']
         
         # Convert the date string to a Python datetime object
         dob = datetime.strptime(birthdate, "%Y-%m-%d")
         # send_email("apply",email,"user_id",name)
-        send_email_to_admin(name,email,college,address,mobile,birthdate,internship,amount)
+        send_email_to_admin(name,email,college,address,mobile,birthdate,internship,amount,ref)
         # intern_details = InternDetails(name = name,email = email,college = college,address = address,mno = mobile,dob = dob,amount=amount,internship= internship,upiid = upiid,user_id=user.sno)
         # db.session.add(intern_details)
         # db.session.commit()
@@ -902,3 +903,14 @@ def send_email_for_contact(name,email,mno,msg):
     finally:
         # Close the connection to the SMTP server
         server.quit()
+
+
+@app.route("/internverification/<int:userid>/<string:domain>")
+def internverify(userid,domain):
+    intern = InternDetails.query.filter_by(user_id=userid, internship=domain).first()
+    if intern:
+        date = intern.date
+        enddate = date +  timedelta(days=30)
+        return render_template("internverification.html",intern = intern,enddate = enddate)
+    else:
+        return redirect("/")
