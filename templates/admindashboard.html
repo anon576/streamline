@@ -58,14 +58,14 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Password</th>
-                <th>Enrolled Internship</th>
+                <th>Intern ID</th>
             </tr>
             {% for user in users %}
             <tr>
                 <td>{{ user.name }}</td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.password }}</td>
-                <td>{{ user.password }}</td>
+                <td>CDS{{ user.sno }}</td>
             </tr>
             {% endfor %}
         </table>
