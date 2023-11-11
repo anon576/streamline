@@ -27,11 +27,11 @@ app.secret_key = "sskey"
 
 
 if(localServer):
-    app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://streamline_user:tmMHG25zYSioG99qWMMneAtFLyMl23Sm@dpg-cjc5u27db61s73csj78g-a.singapore-postgres.render.com/streamline"
+    app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://codestream_user:f14f9S7fwFUsfpXJ0dbCu5TcNmzE99rX@dpg-cl7ikk76e7vc739t691g-a.oregon-postgres.render.com/codestream"
     app.config["SQLALCHEMY_BINDS"] = {
     }
 else:
-    app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://streamline_user:tmMHG25zYSioG99qWMMneAtFLyMl23Sm@dpg-cjc5u27db61s73csj78g-a.singapore-postgres.render.com/streamline"
+    app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://codestream_user:f14f9S7fwFUsfpXJ0dbCu5TcNmzE99rX@dpg-cl7ikk76e7vc739t691g-a.oregon-postgres.render.com/codestream"
 
 
 db = SQLAlchemy(app)
