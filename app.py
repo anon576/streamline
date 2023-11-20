@@ -27,7 +27,7 @@ app.secret_key = "sskey"
 
 
 if(localServer):
-    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("userdb")
+    app.config["SQLALCHEMY_DATABASE_URI"] = params['userdb']
     app.config["SQLALCHEMY_BINDS"] = {
     }
 else:

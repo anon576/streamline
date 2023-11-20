@@ -1,7 +1,7 @@
 {
     "params": {
       "userdb1": "postgresql://streamline_user:tmMHG25zYSioG99qWMMneAtFLyMl23Sm@dpg-cjc5u27db61s73csj78g-a.singapore-postgres.render.com/streamline",
-      "userdb": "postgresql://codestream_user:f14f9S7fwFUsfpXJ0dbCu5TcNmzE99rX@dpg-cl7ikk76e7vc739t691g-a.oregon-postgres.render.com/codestream",
+      "userdb": "postgresql://codestream2024_user:iihjaYykPU1mpjXNtpsaszR7YTvSR3iQ@/codestream2024",
       "InternDetails": "sqlite:///InternDetails.db",
       "idata":"sqlite:///idata.db",
       "UserP": "sqlite:///UserProgress.db",
