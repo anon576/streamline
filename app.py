@@ -914,3 +914,42 @@ def internverify(userid,domain):
         return render_template("internverification.html",intern = intern,enddate = enddate)
     else:
         return redirect("/")
+    
+# from flask import send_file
+# import pandas as pd
+# from io import BytesIO
+
+# @app.route("/download")
+# def download():
+#     # Fetch all users from the database
+#     users = RegUsers.query.all()
+
+#     # Convert the data to a DataFrame
+#     data = {
+#         'Name': [user.name for user in users],
+#         'Email': [user.email for user in users],
+#         'Password': [user.password for user in users],
+#         'Fpass': [user.fpass for user in users],
+#         'Date': [user.date.strftime('%Y-%m-%d %H:%M:%S') for user in users],
+#         'User Progress': [user.userprogress for user in users],
+#         'Submission': [user.submission for user in users]
+#     }
+
+#     df = pd.DataFrame(data)
+
+#     # Create a BytesIO object to store the Excel file
+#     excel_file = BytesIO()
+
+#     # Convert DataFrame to Excel
+#     df.to_excel(excel_file, index=False)
+
+#     # Set the position to the beginning of the file
+#     excel_file.seek(0)
+
+#     # Return the Excel file as a downloadable attachment
+#     return send_file(
+#         excel_file,
+#         download_name="user_data.xls",
+#         as_attachment=True,
+#         mimetype="application/vnd.ms-excel"
+#     )
