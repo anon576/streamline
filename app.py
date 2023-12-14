@@ -11,7 +11,7 @@ import ast
 
 
 
-# os.environ["DURL"] = "postgresql://codestream3_q41s_user:oaf6tP4Z4PgfRXtPyWNih3h2dd1E7AhF@dpg-cltg56q1hbls73eeir8g-a.singapore-postgres.render.com/codestream3_q41s"
+os.environ["DURL"] = "postgresql://codestream3_q41s_user:oaf6tP4Z4PgfRXtPyWNih3h2dd1E7AhF@dpg-cltg56q1hbls73eeir8g-a.singapore-postgres.render.com/codestream3_q41s"
 
 with open("templates/config.json",'r') as o:
     params = json.load(o)['params']
