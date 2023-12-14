@@ -1,10 +1,5 @@
 {
     "params": {
-      "userdb1": "postgresql://streamline_user:tmMHG25zYSioG99qWMMneAtFLyMl23Sm@dpg-cjc5u27db61s73csj78g-a.singapore-postgres.render.com/streamline",
-      "userdb": "postgresql://codestream2024_user:iihjaYykPU1mpjXNtpsaszR7YTvSR3iQ@/codestream2024",
-      "InternDetails": "sqlite:///InternDetails.db",
-      "idata":"sqlite:///idata.db",
-      "UserP": "sqlite:///UserProgress.db",
       "email": "codestream63@gmail.com",
       "pass": "tkdcwqrlnkvxxirj",
       "admin": "codestream0123",

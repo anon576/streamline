@@ -10,31 +10,24 @@ import os
 import ast
 
 
-localServer = True
+
+# os.environ["DURL"] = "postgresql://codestream3_q41s_user:oaf6tP4Z4PgfRXtPyWNih3h2dd1E7AhF@dpg-cltg56q1hbls73eeir8g-a.singapore-postgres.render.com/codestream3_q41s"
+
 with open("templates/config.json",'r') as o:
     params = json.load(o)['params']
 
 app = Flask(__name__)
 app.secret_key = "sskey"
-# app.config.update(
-#     MAIL_SERVER = "smtp.gmail.com",
-#     MAIL_PORT = "465",
-#     MAIL_USE_SSL = True,
-#     MAIL_USERNAME = params["mailUser"],
-#     MAIL_PASSWORD = params["mailPassword"]
-# )
 
 
 
-if(localServer):
-    app.config["SQLALCHEMY_DATABASE_URI"] = params['userdb']
-    app.config["SQLALCHEMY_BINDS"] = {
-    }
-else:
-    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("userdb")
+
+
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DURL")
 
 
 db = SQLAlchemy(app)
+
 # from project import app, db
 # >>> app.app_context().push()
 # >>> db.create_all()
