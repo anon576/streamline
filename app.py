@@ -581,11 +581,7 @@ def applyform(domain):
         dob = datetime.strptime(birthdate, "%Y-%m-%d")
         # send_email("apply",email,"user_id",name)
         send_email_to_admin(name,email,college,address,mobile,birthdate,internship,amount,ref)
-        # intern_details = InternDetails(name = name,email = email,college = college,address = address,mno = mobile,dob = dob,amount=amount,internship= internship,upiid = upiid,user_id=user.sno)
-        # db.session.add(intern_details)
-        # db.session.commit()
-        
-        #Store the form data in the session for later use
+   
         session['application_data'] = {
             'name': name,
             'email': email,
@@ -597,13 +593,8 @@ def applyform(domain):
             'amount': amount  # Store the amount for later reference
         }
 
-        # Create the Razorpay payment order and redirect to checkout page
-        # client = razorpay.Client(auth=("rzp_test_Zjom8IGzUOcgy1", "QTCPiD4BPPLsHcVtSN3DsUe4"))
-        # data = {"amount": amount * 100, "currency": "INR", "receipt": f"{user.sno}"}
-        # payment = client.order.create(data=data)
 
-        # Redirect the user to the Razorpay checkout page
-        return redirect("https://cosmofeed.com/vp/64ecbc82656bd0001dbbb054")
+        return redirect("/")
 
     return render_template("applyform.html",domain = domain)
 
@@ -746,24 +737,7 @@ def adminApplyform():
         # Redirect to admin login page if admin is not logged in
         return redirect("/adminlogin")
         
-        # Store the form data in the session for later use
-        # session['application_data'] = {
-        #     'name': name,
-        #     'email': email,
-        #     'college': college,
-        #     'address': address,
-        #     'mobile': mobile,
-        #     'dob': dob,
-        #     'internship': internship,
-        #     'amount': amount  # Store the amount for later reference
-        # }
-
-        # Create the Razorpay payment order and redirect to checkout page
-        # client = razorpay.Client(auth=("rzp_test_Zjom8IGzUOcgy1", "QTCPiD4BPPLsHcVtSN3DsUe4"))
-        # data = {"amount": amount * 100, "currency": "INR", "receipt": f"{user.sno}"}
-        # payment = client.order.create(data=data)
-
-        # Redirect the user to the Razorpay checkout page
+       
         
 @app.route("/veiwIntership",methods = ['GET','POST'])
 def veiwInternship():
